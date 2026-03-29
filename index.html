@@ -3,35 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumar Biswajit Debnath | Architect & Researcher</title>
+    <title>Kumar Biswajit Debnath | UTS Researcher</title>
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px; }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .project { margin-bottom: 30px; border-left: 5px solid #005a9c; padding-left: 20px; }
-        .contact { background: #f4f4f4; padding: 20px; border-radius: 8px; }
-        a { color: #005a9c; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
+        
+        /* Sidebar */
+        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
+        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* Main Content */
+        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.5rem; margin-bottom: 0; color: var(--primary); }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
+        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
+        .project-card { background: #fdfdfd; border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        
+        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
     </style>
 </head>
 <body>
-    <img src="portrait.jpg" style="width:150px; border-radius:50%; border: 2px solid #eee;" alt="Kumar Biswajit Debnath">
-    
-    <h1>Kumar Biswajit Debnath</h1>
-    <p><strong>Architect | Building Physicist | Researcher at UTS</strong></p>
-    
-    <h2>Research Focus</h2>
-    <p>Specializing in mycelium-based composites, bio-intelligent building systems, and passive cooling solutions like <em>Bio-jaali</em>.</p>
 
-    <div class="project">
-        <h3>Featured Project: Bio-jaali</h3>
-        <p>A mycelium-based passive cooling screen inspired by vernacular architectural principles for extreme climates.</p>
+<header>
+    <img src="portrait.jpg" alt="Kumar Biswajit Debnath" class="profile-pic">
+    <h1>K.B. Debnath</h1>
+    <p>Architect & Building Physicist<br><strong>University of Technology Sydney</strong></p>
+    
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Research Projects</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h2>About Me</h2>
+    <p>I am a researcher specializing in <strong>bio-intelligent building systems</strong>. My work focuses on the intersection of architecture, biology, and thermal performance, specifically utilizing mycelium-based composites for sustainable construction.</p>
+
+    <h2>Current Research</h2>
+    <div class="project-card">
+        <h3>Bio-jaali: Passive Cooling</h3>
+        <p>Developing climate-resilient architecture through mycelium-based cooling screens. This work explores how bio-fabricated materials can replace traditional high-carbon cooling systems.</p>
     </div>
 
-    <h2>Selected Publications</h2>
-    <ul>
-        <li><a href="https://theconversation.com/we-think-of-mushrooms-as-food-but-mycelium-based-blocks-could-be-the-future-of-construction-269273">The Conversation: Mycelium Blocks in Construction</a></li>
-        <li><a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath">Full UTS Research Profile</a></li>
-    </ul>
+    <div class="project-card">
+        <h3>Bio-Fabrication for Space</h3>
+        <p>Exploring the potential of mycelium for terrestrial and extra-terrestrial habitats.</p>
+    </div>
+
 
     <div class="contact">
         <h2>Contact</h2>
@@ -39,5 +59,8 @@
         <p> Personal email: Kumar.Biswajit@gmail.com</p>
         <p>LinkedIn: <a href="#">https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/</a></p>
     </div>
+    
+</main>
+
 </body>
 </html>
