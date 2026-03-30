@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Kumar Biswajit Debnath</title>
+    <style>
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
+        
+        /* Sidebar */
+        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
+        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Main Content */
+        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
+        
+        /* Metrics Dashboard */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
+        .metric-card { background: #f1f8ff; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #d0e3ff; }
+        .metric-value { font-size: 1.8rem; font-weight: bold; color: var(--primary); display: block; }
+        .metric-label { font-size: 0.85rem; color: #666; text-transform: uppercase; }
+
+        /* Publication List */
+        .pub-item { margin-bottom: 25px; padding-left: 15px; border-left: 3px solid #eee; }
+        .pub-item:hover { border-left-color: var(--primary); }
+        .pub-title { font-weight: bold; color: #222; display: block; margin-bottom: 5px; }
+        .pub-meta { font-size: 0.9em; color: #555; }
+        .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-left: 5px; }
+        .q1 { background: #e8f5e9; color: #2e7d32; }
+        .if { background: #fff3e0; color: #ef6c00; }
+        .doi { color: var(--primary); text-decoration: none; font-family: monospace; font-size: 0.85em; }
+
+        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="Portrait.jpg" style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Kumar Biswajit Debnath">
+    <h1>K. B. Debnath</h1>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+        <a href="experience.html">Experience</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="publications.html" style="color: #333;">Publications</a>
+        <a href="projects.html">Research Projects</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Research Publications</h1>
+    
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-value">900</span>
+            <span class="metric-label">Google Scholar Citations</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">9 / 9 / 8</span>
+            <span class="metric-label">h-index (GS / Scopus / WoS)</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">Q1</span>
+            <span class="metric-label">Primary Journal Tier</span>
+        </div>
+    </div>
+
+    <h2>Selected Peer-Reviewed Journals</h2>
+
+    <div class="pub-item">
+        <span class="pub-title">RHpT: Bioclimatic Framework for Climate-Adaptive Bio-Façades in Urban Context.</span>
+        <span class="pub-meta">Debnath KB, et al. (2026). <em>Energy and Buildings</em>. <span class="tag q1">Q1 (Top 10%)</span> <span class="tag if">IF: 7.1</span></span><br>
+        <a href="https://doi.org/10.1016/j.enbuild.2026.117192" class="doi">DOI: 10.1016/j.enbuild.2026.117192</a>
+    </div>
+
+    <div class="pub-item">
+        <span class="pub-title">Bio-Jaali: Reimagining Vernacular Cooling Screens with Mycelium-Based Composites.</span>
+        <span class="pub-meta">Debnath KB, et al. (2026). <em>Energy and Buildings</em>. <span class="tag q1">Q1 (Top 10%)</span> <span class="tag if">IF: 7.1</span></span><br>
+        <a href="https://doi.org/10.1016/j.enbuild.2026.117104" class="doi">DOI: 10.1016/j.enbuild.2026.117104</a>
+    </div>
+
+    <div class="pub-item">
+        <span class="pub-title">Challenges and gaps for energy planning models in the developing-world context.</span>
+        <span class="pub-meta">Debnath KB and Mourshed M (2018). <em>Nature Energy</em>. <span class="tag q1">Q1 (Top 1%)</span> <span class="tag if">IF: 60.1</span></span><br>
+        <a href="https://doi.org/10.1038/s41560-018-0095-2" class="doi">DOI: 10.1038/s41560-018-0095-2</a>
+    </div>
+
+    <h2>Books & Chapters</h2>
+    <div class="pub-item">
+        <span class="pub-title">Fundamentals of Bio-building Physics (Forthcoming)</span>
+        <span class="pub-meta">Debnath KB. <em>MIT Press</em>. Proposal due Nov 2026.</span>
+    </div>
+    
+    <div class="pub-item">
+        <span class="pub-title">Mycelium-based Composites as/in Building Skins: Potential, Constraints and Way Forward.</span>
+        <span class="pub-meta">Debnath KB (2026). In: <em>Mycology for Architecture</em>. Pelagic Publishing.</span><br>
+        <span class="doi">DOI: 10.53061/MSVZ3329</span>
+    </div>
+
+    <h2>Selected Conference Proceedings</h2>
+    <div class="pub-item">
+        <span class="pub-title">Weather Protection of Mycelium-based Composites for building façade applications.</span>
+        <span class="pub-meta">Debnath KB, et al. (2026). <em>38th PLEA Conference</em>, Costa Rica.</span>
+    </div>
+
+    <div class="pub-item">
+        <span class="pub-title">Mycelium-Based Composites from Space Farming Waste: Bio-fabrication in Space Habitats.</span>
+        <span class="pub-meta">Debnath KB (2025). <em>76th International Astronautical Congress (IAC)</em>, Sydney.</span>
+    </div>
+
+    <h2>Media & Impact</h2>
+    <div class="pub-item">
+        <span class="pub-title">We think of mushrooms as food, but mycelium-based blocks could be the future of construction.</span>
+        <span class="pub-meta">Debnath KB (2025). <em>The Conversation</em>. Featured by <strong>National Geographic (2026)</strong>.</span>
+    </div>
+
+</main>
+
+</body>
+</html>
