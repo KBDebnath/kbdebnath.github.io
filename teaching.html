@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Experience | Kumar Biswajit Debnath</title>
+    <style>
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
+        
+        /* Sidebar */
+        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
+        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Main Content */
+        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        .legend { background: #f1f8ff; padding: 15px; border-radius: 8px; margin-bottom: 30px; font-size: 0.9em; border-left: 4px solid var(--primary); }
+        
+        /* Table Styling */
+        .teaching-section { margin-bottom: 40px; }
+        .university-header { background: #eee; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; color: var(--primary); }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.95em; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { background: #fafafa; font-weight: bold; }
+        .type-tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; color: white; }
+        .ds { background: #27ae60; } /* Design Studio */
+        .lb { background: #2980b9; } /* Lecture Based */
+        .ct { background: #8e44ad; } /* Computer Lab */
+
+        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="Portrait.jpg" style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Kumar Biswajit Debnath">
+    <h1>K. B. Debnath</h1>
+    <p>Chancellor's Research Fellow<br>UTS, Sydney</p>
+    
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education & Qualifications</a>
+        <a href="experience.html">Professional Experience</a>
+        <a href="teaching.html" style="color: #333;">Teaching Experience</a>
+        <a href="projects.html">Research Projects</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Teaching Experience</h1>
+    <div class="legend">
+        <strong>Legend:</strong> 
+        <span class="type-tag ds">DS</span> Design studio-based | 
+        <span class="type-tag ct">CT</span> Computer lab-based | 
+        <span class="type-tag lb">LB</span> Lecture-based
+    </div>
+
+    <div class="teaching-section">
+        <div class="university-header">2024 - 2028 | University of Technology Sydney (UTS), Australia</div>
+        <table>
+            <tr><th>Course Name</th><th>Level</th><th>Size</th><th>Type</th></tr>
+            <tr><td>Master's Architectural Design Studio 1 & 2 (RE-FORM)</td><td>M.Arch.</td><td>18</td><td><span class="type-tag ds">DS</span></td></tr>
+            <tr><td>Bio-Architecture in a Warming World</td><td>B.Arch - M.Arch</td><td>15-30</td><td><span class="type-tag lb">LB</span></td></tr>
+        </table>
+    </div>
+
+    <div class="teaching-section">
+        <div class="university-header">2025 - 2026 | Chang'an University, Xi’an, China (Visiting)</div>
+        <table>
+            <tr><th>Course Name</th><th>Level</th><th>Size</th><th>Type</th></tr>
+            <tr><td>Bio-Intelligent Building Systems for Climate-Resilient Architecture</td><td>M.Sc. & PhD</td><td>15</td><td><span class="type-tag lb">LB</span></td></tr>
+        </table>
+    </div>
+
+    <div class="teaching-section">
+        <div class="university-header">2018 - 2023 | Heriot-Watt University, Edinburgh, UK</div>
+        <table>
+            <tr><th>Course Name</th><th>Level</th><th>Size</th><th>Type</th></tr>
+            <tr><td>Built Environment Collaborative Project</td><td>B.Eng / M.Eng</td><td>20</td><td><span class="type-tag ds">DS</span></td></tr>
+            <tr><td>Architectural Engineering Design Project</td><td>B.Eng</td><td>20</td><td><span class="type-tag ds">DS</span></td></tr>
+            <tr><td>Energy and Buildings</td><td>B.Eng</td><td>30</td><td><span class="type-tag lb">LB</span></td></tr>
+            <tr><td>Demand Management and Energy Storage</td><td>M.Sc.</td><td>30</td><td><span class="type-tag lb">LB</span></td></tr>
+        </table>
+    </div>
+
+    <div class="teaching-section">
+        <div class="university-header">2015 - 2018 | Cardiff University, Wales, UK (TA)</div>
+        <table>
+            <tr><th>Course Name</th><th>Level</th><th>Size</th><th>Type</th></tr>
+            <tr><td>Environmental Building Modelling & Performance</td><td>M.Eng.</td><td>5-10</td><td><span class="type-tag ct">CT</span></td></tr>
+            <tr><td>Environmental Building Studies</td><td>M.Sc.</td><td>30</td><td><span class="type-tag lb">LB</span></td></tr>
+            <tr><td>Integrated Building Design</td><td>B.Sc.</td><td>30</td><td><span class="type-tag lb">LB</span></td></tr>
+        </table>
+    </div>
+
+    <div class="teaching-section">
+        <div class="university-header">2012 - 2014 | Southeast University, Dhaka, Bangladesh</div>
+        <table>
+            <tr><th>Course Name</th><th>Level</th><th>Size</th><th>Type</th></tr>
+            <tr><td>Design I & II (Basic Design & Appreciation)</td><td>B.Arch.</td><td>15-30</td><td><span class="type-tag ds">DS</span></td></tr>
+            <tr><td>Computer Application I: CAD</td><td>B.Arch.</td><td>5-20</td><td><span class="type-tag ct">CT</span></td></tr>
+            <tr><td>Environment & Design / Ecology</td><td>B.Arch.</td><td>15-30</td><td><span class="type-tag lb">LB</span></td></tr>
+            <tr><td>History of Architecture III / Survey Techniques</td><td>B.Arch.</td><td>10-20</td><td><span class="type-tag lb">LB</span></td></tr>
+        </table>
+    </div>
+</main>
+
+</body>
+</html>
