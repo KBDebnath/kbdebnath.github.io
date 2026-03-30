@@ -10,29 +10,34 @@
         
         /* Sidebar */
         header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
-        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
         
         /* Main Content */
         main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
-        
-        /* Metrics Dashboard */
-        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px; }
-        .metric-card { background: #f1f8ff; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #d0e3ff; }
-        .metric-value { font-size: 1.8rem; font-weight: bold; color: var(--primary); display: block; }
-        .metric-label { font-size: 0.85rem; color: #666; text-transform: uppercase; }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; text-transform: uppercase; font-size: 1.2rem; }
+        h3 { color: #555; margin-top: 30px; border-left: 4px solid #ddd; padding-left: 10px; }
 
-        /* Publication List */
-        .pub-item { margin-bottom: 25px; padding-left: 15px; border-left: 3px solid #eee; }
-        .pub-item:hover { border-left-color: var(--primary); }
-        .pub-title { font-weight: bold; color: #222; display: block; margin-bottom: 5px; }
-        .pub-meta { font-size: 0.9em; color: #555; }
-        .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-left: 5px; }
-        .q1 { background: #e8f5e9; color: #2e7d32; }
-        .if { background: #fff3e0; color: #ef6c00; }
-        .doi { color: var(--primary); text-decoration: none; font-family: monospace; font-size: 0.85em; }
+        /* Impact Dashboard */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 40px; }
+        .metric-card { background: #f1f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #d0e3ff; }
+        .metric-value { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: block; }
+        .metric-label { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Publication Styling */
+        .pub-list { list-style: none; padding: 0; }
+        .pub-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-title { font-weight: bold; color: #222; display: block; }
+        .pub-authors { font-size: 0.9em; color: #444; }
+        .pub-journal { font-style: italic; color: #005a9c; }
+        .pub-tags { margin-top: 5px; }
+        .tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; margin-right: 5px; color: white; }
+        .q1 { background: #27ae60; }
+        .q2 { background: #f39c12; }
+        .if { background: #607d8b; }
+        .doi { font-family: monospace; font-size: 0.8em; color: #888; text-decoration: none; }
+        .doi:hover { color: var(--primary); }
 
         @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
     </style>
@@ -50,76 +55,89 @@
         <a href="publications.html" style="color: #333;">Publications</a>
         <a href="projects.html">Research Projects</a>
         <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
+        <a href="contact.html">Contact</a>
     </nav>
 </header>
 
 <main>
-    <h1>Research Publications</h1>
-    
+    <h1>Publications & Research Impact</h1>
+
     <div class="metrics-grid">
-        <div class="metric-card">
-            <span class="metric-value">900</span>
-            <span class="metric-label">Google Scholar Citations</span>
+        <div class="metric-card"><span class="metric-value">900</span><span class="metric-label">Citations (GS)</span></div>
+        <div class="metric-card"><span class="metric-value">574</span><span class="metric-label">Citations (Scopus)</span></div>
+        <div class="metric-card"><span class="metric-value">9 / 9 / 8</span><span class="metric-label">h-index (GS/S/W)</span></div>
+        <div class="metric-card"><span class="metric-value">9</span><span class="metric-label">i10-index</span></div>
+    </div>
+
+    <h2>Journal Articles (Peer-Reviewed)</h2>
+    <div class="pub-list">
+        <div class="pub-item">
+            <span class="pub-title">RHpT: Bioclimatic Framework for Climate-Adaptive Bio-Façades in Urban Context.</span>
+            <span class="pub-authors">Debnath KB, Pynirtzi N, Scott J, Davie C, Bridgens B (2026).</span>
+            <span class="pub-journal">Energy and Buildings.</span>
+            <div class="pub-tags"><span class="tag q1">Q1 (Top 10%)</span><span class="tag if">IF: 7.1</span></div>
+            <a href="https://doi.org/10.1016/j.enbuild.2026.117192" class="doi">DOI: 10.1016/j.enbuild.2026.117192</a>
         </div>
-        <div class="metric-card">
-            <span class="metric-value">9 / 9 / 8</span>
-            <span class="metric-label">h-index (GS / Scopus / WoS)</span>
+
+        <div class="pub-item">
+            <span class="pub-title">Bio-Jaali: Reimagining Vernacular Cooling Screens with Mycelium-Based Composites.</span>
+            <span class="pub-authors">Debnath KB, Pynirtzi N, Scott J, Davie C, Bridgens B (2026).</span>
+            <span class="pub-journal">Energy and Buildings.</span>
+            <div class="pub-tags"><span class="tag q1">Q1 (Top 10%)</span><span class="tag if">IF: 7.1</span></div>
+            <a href="https://doi.org/10.1016/j.enbuild.2026.117104" class="doi">DOI: 10.1016/j.enbuild.2026.117104</a>
         </div>
-        <div class="metric-card">
-            <span class="metric-value">Q1</span>
-            <span class="metric-label">Primary Journal Tier</span>
+
+        <div class="pub-item">
+            <span class="pub-title">Challenges and gaps for energy planning models in the developing-world context.</span>
+            <span class="pub-authors">Debnath KB and Mourshed M (2018).</span>
+            <span class="pub-journal">Nature Energy.</span>
+            <div class="pub-tags"><span class="tag q1">Q1 (Top 1%)</span><span class="tag if">IF: 60.1</span></div>
+            <a href="https://doi.org/10.1038/s41560-018-0095-2" class="doi">DOI: 10.1038/s41560-018-0095-2</a>
         </div>
-    </div>
-
-    <h2>Selected Peer-Reviewed Journals</h2>
-
-    <div class="pub-item">
-        <span class="pub-title">RHpT: Bioclimatic Framework for Climate-Adaptive Bio-Façades in Urban Context.</span>
-        <span class="pub-meta">Debnath KB, et al. (2026). <em>Energy and Buildings</em>. <span class="tag q1">Q1 (Top 10%)</span> <span class="tag if">IF: 7.1</span></span><br>
-        <a href="https://doi.org/10.1016/j.enbuild.2026.117192" class="doi">DOI: 10.1016/j.enbuild.2026.117192</a>
-    </div>
-
-    <div class="pub-item">
-        <span class="pub-title">Bio-Jaali: Reimagining Vernacular Cooling Screens with Mycelium-Based Composites.</span>
-        <span class="pub-meta">Debnath KB, et al. (2026). <em>Energy and Buildings</em>. <span class="tag q1">Q1 (Top 10%)</span> <span class="tag if">IF: 7.1</span></span><br>
-        <a href="https://doi.org/10.1016/j.enbuild.2026.117104" class="doi">DOI: 10.1016/j.enbuild.2026.117104</a>
-    </div>
-
-    <div class="pub-item">
-        <span class="pub-title">Challenges and gaps for energy planning models in the developing-world context.</span>
-        <span class="pub-meta">Debnath KB and Mourshed M (2018). <em>Nature Energy</em>. <span class="tag q1">Q1 (Top 1%)</span> <span class="tag if">IF: 60.1</span></span><br>
-        <a href="https://doi.org/10.1038/s41560-018-0095-2" class="doi">DOI: 10.1038/s41560-018-0095-2</a>
-    </div>
+        </div>
 
     <h2>Books & Chapters</h2>
-    <div class="pub-item">
-        <span class="pub-title">Fundamentals of Bio-building Physics (Forthcoming)</span>
-        <span class="pub-meta">Debnath KB. <em>MIT Press</em>. Proposal due Nov 2026.</span>
-    </div>
-    
-    <div class="pub-item">
-        <span class="pub-title">Mycelium-based Composites as/in Building Skins: Potential, Constraints and Way Forward.</span>
-        <span class="pub-meta">Debnath KB (2026). In: <em>Mycology for Architecture</em>. Pelagic Publishing.</span><br>
-        <span class="doi">DOI: 10.53061/MSVZ3329</span>
-    </div>
-
-    <h2>Selected Conference Proceedings</h2>
-    <div class="pub-item">
-        <span class="pub-title">Weather Protection of Mycelium-based Composites for building façade applications.</span>
-        <span class="pub-meta">Debnath KB, et al. (2026). <em>38th PLEA Conference</em>, Costa Rica.</span>
+    <div class="pub-list">
+        <div class="pub-item">
+            <span class="pub-title">Mycelium-based Composites as/in Building Skins: Potential, Constraints and Way Forward.</span>
+            <span class="pub-authors">Debnath KB (2026).</span>
+            <span class="pub-journal">In: Mycology for Architecture (Ed. Dr. Dilan Ozkan), Pelagic Publishing.</span>
+            <div class="pub-tags"><span class="tag if">ISBN: 9781784276522</span></div>
+        </div>
+        <div class="pub-item">
+            <span class="pub-title">Sustainable buildings within low carbon energy systems.</span>
+            <span class="pub-authors">Jenkins DP, McCallum P and Debnath KB (2024).</span>
+            <span class="pub-journal">In: Rethinking Pathways to a Sustainable Built Environment, Routledge.</span>
+        </div>
     </div>
 
-    <div class="pub-item">
-        <span class="pub-title">Mycelium-Based Composites from Space Farming Waste: Bio-fabrication in Space Habitats.</span>
-        <span class="pub-meta">Debnath KB (2025). <em>76th International Astronautical Congress (IAC)</em>, Sydney.</span>
-    </div>
+    <h2>Conference Proceedings (Peer-Reviewed)</h2>
+    <div class="pub-list">
+        <div class="pub-item">
+            <span class="pub-title">Weather Protection of Mycelium-based Composites for building façade applications.</span>
+            <span class="pub-authors">Debnath KB, Biloria N and Ton-That C (2026).</span>
+            <span class="pub-journal">38th PLEA Conference 2026, San José, Costa Rica.</span>
+        </div>
+        <div class="pub-item">
+            <span class="pub-title">Mycelium-Based Composites from Space Farming Waste: Bio-fabrication in Space Habitats.</span>
+            <span class="pub-authors">Debnath KB (2025).</span>
+            <span class="pub-journal">76th International Astronautical Congress (IAC), Sydney.</span>
+        </div>
+        </div>
 
-    <h2>Media & Impact</h2>
-    <div class="pub-item">
-        <span class="pub-title">We think of mushrooms as food, but mycelium-based blocks could be the future of construction.</span>
-        <span class="pub-meta">Debnath KB (2025). <em>The Conversation</em>. Featured by <strong>National Geographic (2026)</strong>.</span>
+    <h2>Non-Peer Reviewed & Reports</h2>
+    <div class="pub-list">
+        <div class="pub-item">
+            <span class="pub-title">We think of mushrooms as food, but mycelium-based blocks could be the future of construction.</span>
+            <span class="pub-authors">Debnath KB (2025).</span>
+            <span class="pub-journal">The Conversation (Australia + NZ). Featured by National Geographic (2026).</span>
+        </div>
+        <div class="pub-item">
+            <span class="pub-title">Understanding the cold-chain challenge for COVID-19 vaccination.</span>
+            <span class="pub-authors">Peters T, et al. (2020).</span>
+            <span class="pub-journal">Report: University of Birmingham, Centre for Sustainable Cooling.</span>
+        </div>
     </div>
-
 </main>
 
 </body>
