@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education & Qualifications | Kumar Biswajit Debnath</title>
+    <style>
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
+        
+        /* Sidebar (Same as Index) */
+        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
+        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Main Content */
+        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 30px; }
+        
+        /* Timeline Styling */
+        .timeline { border-left: 2px solid #eee; padding-left: 20px; margin-top: 20px; }
+        .item { margin-bottom: 30px; position: relative; }
+        .item::before { content: ""; position: absolute; left: -27px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); }
+        .year { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .degree { font-size: 1.2rem; font-weight: bold; margin: 5px 0; }
+        .inst { font-style: italic; color: #555; }
+        .thesis { margin-top: 10px; font-size: 0.95em; background: #f9f9f9; padding: 10px; border-radius: 4px; border-left: 3px solid #ddd; }
+        
+        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="Portrait.jpg" style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Kumar Biswajit Debnath">
+    <h1>K. B. Debnath</h1>
+    <p>Chancellor's Research Fellow<br>UTS, Sydney</p>
+    
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="education.html" style="color: #333;">Education & Qualifications</a>
+        <a href="projects.html">Research Projects</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Education & Professional Qualifications</h1>
+
+    <div class="timeline">
+        <div class="item">
+            <div class="year">2024</div>
+            <div class="degree">Research Degree Supervisor (Category 2)</div>
+            <div class="inst">School of Architecture, DAB, University of Technology Sydney (UTS), Australia</div>
+        </div>
+
+        <div class="item">
+            <div class="year">2023</div>
+            <div class="degree">Fellow of the Higher Education Academy (FHEA)</div>
+            <div class="inst">UK Professional Standards Framework (UKPSF) CPD Scheme, Advance HE</div>
+        </div>
+
+        <div class="item">
+            <div class="year">2018</div>
+            <div class="degree">PhD in Civil and Environmental Engineering</div>
+            <div class="inst">Cardiff University, Wales, UK</div>
+            <div class="thesis">
+                <strong>Thesis:</strong> Decarbonisation cost of Bangladesh’s energy sector: Influence of corruption.<br>
+                <strong>Supervisors:</strong> Professor Monjur Mourshed
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="year">2014</div>
+            <div class="degree">Master of Architecture (M.Arch.)</div>
+            <div class="inst">Bangladesh University of Engineering and Technology (BUET), Dhaka</div>
+            <div class="thesis">
+                <strong>Thesis:</strong> A parametric study of biomimetic design of high-rise office building façades in view of optimising natural ventilation potential in the humid tropics.<br>
+                <strong>Supervisor:</strong> Professor Khandaker Shabbir Ahmed
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="year">2013</div>
+            <div class="degree">Associate Member (AD-026)</div>
+            <div class="inst">Institute of Architects, Bangladesh (IAB), Dhaka</div>
+        </div>
+
+        <div class="item">
+            <div class="year">2012</div>
+            <div class="degree">Bachelor of Architecture (B.Arch.)</div>
+            <div class="inst">Bangladesh University of Engineering and Technology (BUET), Dhaka</div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
