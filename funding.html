@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funding & Awards | Kumar Biswajit Debnath</title>
+    <style>
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; --accent: #d35400; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
+        
+        /* Sidebar */
+        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
+        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Main Content */
+        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        h2 { border-bottom: 2px solid var(--primary); display: block; margin-top: 50px; padding-bottom: 5px; font-size: 1.2rem; text-transform: uppercase; }
+
+        /* Summary Dashboard */
+        .summary-box { background: #003358; color: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; display: flex; justify-content: space-around; text-align: center; }
+        .stat h3 { margin: 0; font-size: 2rem; color: #ffcc00; }
+        .stat p { margin: 5px 0 0; font-size: 0.9rem; opacity: 0.9; }
+
+        /* Role Tags */
+        .role-tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; margin-left: 10px; vertical-align: middle; }
+        .ci { background: #c0392b; } /* Chief Investigator */
+        .coi { background: #2980b9; } /* Co-Investigator */
+        .nr { background: #7f8c8d; } /* Named Researcher */
+
+        /* Grant Items */
+        .grant-item { margin-bottom: 25px; border-left: 4px solid #eee; padding-left: 20px; }
+        .grant-item:hover { border-left-color: var(--primary); }
+        .grant-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
+        .grant-meta { font-size: 0.95em; color: #555; margin: 5px 0; }
+        .amount { color: var(--accent); font-weight: bold; }
+        .under-review { opacity: 0.7; font-style: italic; }
+
+        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="Portrait.jpg" style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Kumar Biswajit Debnath">
+    <h1>K. B. Debnath</h1>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+        <a href="experience.html">Experience</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="publications.html">Publications</a>
+        <a href="funding.html" style="color: #333;">Funding & Awards</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Funding & Scholarships</h1>
+    
+    <div class="summary-box">
+        <div class="stat">
+            <h3>AUD 2.9M+</h3>
+            <p>Total Funding Secured (Since 2019)</p>
+        </div>
+        <div class="stat">
+            <h3>25%</h3>
+            <p>Annual Grant Success Rate</p>
+        </div>
+    </div>
+
+    <h2>Major Research Fellowships</h2>
+    <div class="grant-item">
+        <span class="grant-title">BioCOOL: Data-driven bio-fabricated carbon-negative building skin for passive cooling <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">2024 - 2028 | <span class="amount">AUD 663,000</span></span>
+        <span class="grant-meta">University of Technology Sydney, Australia</span>
+    </div>
+
+    <h2>Awarded Research Projects</h2>
+    
+    <div class="grant-item">
+        <span class="grant-title">VaCoBD: Fast-track vaccine cold-chain assessment for mass-scale COVID-19 vaccination <span class="role-tag coi">CoI</span></span>
+        <span class="grant-meta">2020 - 2022 | <span class="amount">AUD 1.2M</span> (GBP 631,661)</span>
+        <span class="grant-meta">UKRI GCRF/NF Agile Response Call, UK</span>
+    </div>
+
+    <div class="grant-item">
+        <span class="grant-title">MYCORAL: Bio-composites from Waste for Coral Reef Restoration <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">2026 | <span class="amount">AUD 50,000</span></span>
+        <span class="grant-meta">UTS Collaboration Scheme, Australia</span>
+    </div>
+
+    <div class="grant-item">
+        <span class="grant-title">Dispatchable Air Conditioning (DAC) <span class="role-tag coi">CoI</span></span>
+        <span class="grant-meta">2020 - 2021 | <span class="amount">AUD 550,215</span> (GBP 288,761)</span>
+        <span class="grant-meta">Innovate UK (Energy Catalyst 7), UK</span>
+    </div>
+
+    <div class="grant-item">
+        <span class="grant-title">Decarbonisation of South Asian energy systems <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">2019 - 2021 | <span class="amount">AUD 95,272</span> (GBP 50,000)</span>
+        <span class="grant-meta">EPSRC Supergen Energy Network Hub, UK</span>
+    </div>
+
+    <h2 class="under-review">Proposals Under Review / Development</h2>
+    <div class="grant-item under-review">
+        <span class="grant-title">DECRA Fellowship 2026: Decoding Bio-based Climate Adaptive Building Envelope <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">Targeting: <span class="amount">AUD 809,560</span> | Timeline: 2027-2030</span>
+    </div>
+    
+    <div class="grant-item under-review">
+        <span class="grant-title">MycoSat: Bio-fabricated satellites from biomass waste <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">NSW Space Research Network (SRN) / ANSTO Round 2026-2</span>
+    </div>
+
+    <h2>Awards & Recognition</h2>
+    <div class="grant-item">
+        <span class="grant-title">Best Poster Award</span>
+        <span class="grant-meta">2023 | Royal Academy of Engineering / Supergen Energy Network, London</span>
+    </div>
+    <div class="grant-item">
+        <span class="grant-title">CSIRO ON Prime 18 (D-Ply)</span>
+        <span class="grant-meta">2025 | Competitive accelerator outcome for bio-composite commercialisation</span>
+    </div>
+
+</main>
+
+</body>
+</html>
