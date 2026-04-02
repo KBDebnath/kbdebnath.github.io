@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumar Biswajit Debnath | UTS </title>
+    <style>
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
+        
+        /* Sidebar */
+        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
+        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* Main Content */
+        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.5rem; margin-bottom: 0; color: var(--primary); }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
+        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
+        .project-card { background: #fdfdfd; border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        
+        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+    </style>
+</head>
+<body>
 
+<header>
+    <img src="Portrait.jpg" 
+     style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" 
+     alt="Kumar Biswajit Debnath">
+    <h1>K. B. Debnath</h1>
+        
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education & Qualifications</a>
+        <a href="employement.html">Professional Experience</a>
+        <a href="teaching.html">Teaching Experience</a>
+        <a href="supervision.html">Supervision Experience</a>
+        <a href="fundings.html">Funding & Awards</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Research Projects</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Current Research Projects</h1>
+    <div class="project-card">
+        <h3>BioCOOL: Passive Cooling</h3>
+        <p>Developing climate-resilient architecture through mycelium-based cooling screens. This work explores how bio-fabricated materials can replace traditional high-carbon cooling systems.</p>
+    </div>
+
+    <div class="project-card">
+        <h3>MYCORAL</h3>
+        <p>Exploring the potential of mycelium-based composites in coral restoration.</p>
+    </div>
+
+    <div class="project-card">
+        <h3>Bio-Fabrication for Space</h3>
+        <p>Exploring the potential of mycelium for terrestrial and extra-terrestrial habitats.</p>
+    </div>
+
+    <div class="project-card">
+        <h3>MycoSAT</h3>
+        <p>Exploring the potential of mycelium-based composites for making satellites.</p>
+    </div>
+
+           
+</main>
+
+</body>
+</html>
