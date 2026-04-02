@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Experience | Kumar Biswajit Debnath | UTS </title>
+    <title>Research Projects | Kumar Biswajit Debnath</title>
     <style>
-        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; --accent: #d35400; }
         
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -17,7 +17,7 @@
             min-height: 100vh;
         }
 
-        /* --- FIXED SIDEBAR --- */
+        /* --- FIXED SIDEBAR (Matching Publications/Funding) --- */
         header { 
             flex: 0 0 280px; 
             background: #f8f9fa; 
@@ -35,7 +35,7 @@
             height: 150px; 
             border-radius: 50%; 
             object-fit: cover; 
-            object-position: top; /* Prevents head cutoff */
+            object-position: top; 
             border: 4px solid white; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
             margin-bottom: 20px; 
@@ -52,41 +52,37 @@
         .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
         .sub-item:hover { color: var(--primary); }
         .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
-        
-        /* Main Content */
-        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
-        h1 { font-size: 2.5rem; margin-bottom: 0; color: var(--primary); }
-        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
-        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
-        .project-card { background: #fdfdfd; border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
 
-        /* Timeline Styling */
-        .timeline { border-left: 2px solid #eee; padding-left: 30px; margin-top: 40px; position: relative; }
-        .item { margin-bottom: 50px; position: relative; }
-        .item::before { 
-            content: ""; 
-            position: absolute; 
-            left: -37px; 
-            top: 8px; 
-            width: 14px; 
-            height: 14px; 
-            border-radius: 50%; 
-            background: var(--primary); 
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px var(--primary);
+        /* --- MAIN CONTENT --- */
+        main { 
+            flex: 1; 
+            padding: 60px; 
+            background: var(--bg); 
+            min-width: 0; /* Critical for responsiveness */
         }
         
-        .year { font-weight: bold; color: var(--primary); font-size: 1rem; letter-spacing: 1px; }
-        .role { font-size: 1.4rem; font-weight: bold; margin: 5px 0; color: #222; }
-        .inst { font-style: italic; color: #555; margin-bottom: 15px; display: block; font-size: 1.1rem; }
-        
-        .details { font-size: 0.95em; color: #444; background: #fcfcfc; padding: 20px; border-radius: 8px; border: 1px solid #f0f0f0; }
-        .details ul { padding-left: 18px; margin: 10px 0; }
-        .sub-role { font-weight: bold; color: var(--primary); margin-top: 15px; display: block; font-size: 0.9rem; text-transform: uppercase; }
-        .funding { color: #d35400; font-weight: bold; font-size: 0.85em; background: #fff5eb; padding: 2px 8px; border-radius: 4px; }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 30px; }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; color: #555; }
 
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.85rem; }
-        
+        /* Project Cards */
+        .project-card { 
+            background: #fdfdfd; 
+            border: 1px solid #eee; 
+            padding: 25px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            border-color: var(--primary);
+        }
+        .project-card h3 { margin-top: 0; color: var(--primary); font-size: 1.3rem; }
+        .project-card p { margin-bottom: 0; color: #444; }
+
+        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.85rem; }
+
         @media (max-width: 768px) {
             body { flex-direction: column; }
             header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
@@ -95,7 +91,6 @@
         }
     </style>
 </head>
-    
 <body>
 
 <header>
