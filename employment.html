@@ -6,53 +6,120 @@
     <title>Professional Experience | Kumar Biswajit Debnath</title>
     <style>
         :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
         
-        /* Sidebar */
-        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
-        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
-        
-        /* Main Content */
-        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: row; 
+            line-height: 1.6; 
+            color: var(--text); 
+            min-height: 100vh;
+        }
+
+        /* --- FIXED SIDEBAR --- */
+        header { 
+            flex: 0 0 280px; 
+            background: #f8f9fa; 
+            padding: 40px; 
+            border-right: 1px solid #eee; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            overflow-y: auto; 
+            box-sizing: border-box;
+        }
+
+        .profile-pic { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            object-position: top; /* Prevents head cutoff */
+            border: 4px solid white; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin-bottom: 20px; 
+        }
+
+        /* Navigation */
+        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
+        .nav-item:hover { background: #eef2f6; color: var(--primary); }
+
+        /* Dropdown Logic */
+        .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
+        .nav-group:hover .sub-menu { max-height: 250px; opacity: 1; margin-bottom: 10px; }
+        .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
+        .sub-item:hover { color: var(--primary); }
+        .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+
+        /* --- MAIN CONTENT --- */
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
         
-        /* Experience Timeline */
-        .timeline { border-left: 2px solid #eee; padding-left: 20px; margin-top: 20px; }
-        .item { margin-bottom: 40px; position: relative; }
-        .item::before { content: ""; position: absolute; left: -27px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); }
-        .year { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
-        .role { font-size: 1.3rem; font-weight: bold; margin: 5px 0; }
-        .inst { font-style: italic; color: #555; margin-bottom: 10px; display: block; }
+        /* Timeline Styling */
+        .timeline { border-left: 2px solid #eee; padding-left: 30px; margin-top: 40px; position: relative; }
+        .item { margin-bottom: 50px; position: relative; }
+        .item::before { 
+            content: ""; 
+            position: absolute; 
+            left: -37px; 
+            top: 8px; 
+            width: 14px; 
+            height: 14px; 
+            border-radius: 50%; 
+            background: var(--primary); 
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
         
-        /* Lists and Details */
-        .details { font-size: 0.95em; color: #444; }
+        .year { font-weight: bold; color: var(--primary); font-size: 1rem; letter-spacing: 1px; }
+        .role { font-size: 1.4rem; font-weight: bold; margin: 5px 0; color: #222; }
+        .inst { font-style: italic; color: #555; margin-bottom: 15px; display: block; font-size: 1.1rem; }
+        
+        .details { font-size: 0.95em; color: #444; background: #fcfcfc; padding: 20px; border-radius: 8px; border: 1px solid #f0f0f0; }
         .details ul { padding-left: 18px; margin: 10px 0; }
-        .sub-role { font-weight: bold; color: #444; margin-top: 15px; display: block; text-decoration: underline; }
-        .funding { color: #d35400; font-weight: bold; font-size: 0.9em; }
+        .sub-role { font-weight: bold; color: var(--primary); margin-top: 15px; display: block; font-size: 0.9rem; text-transform: uppercase; }
+        .funding { color: #d35400; font-weight: bold; font-size: 0.85em; background: #fff5eb; padding: 2px 8px; border-radius: 4px; }
 
-        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
+            main { padding: 30px 20px; }
+            .nav-group .sub-menu { max-height: none; opacity: 1; }
+        }
     </style>
 </head>
 
 <body>
 
 <header>
-    <img src="Portrait.jpg" style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Kumar Biswajit Debnath">
-    <h1>K. B. Debnath</h1>
-    <!--<p>Chancellor's Research Fellow<br>School of Architecture<br>Faculty of Design and Society<br>University of Technology Sydney<br>Sydney, Australia<br></p>-->
+    <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
+    <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+    <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
+        Chancellor's Research Fellow<br>
+        University of Technology Sydney
+    </p>
     
     <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="education.html">Education & Qualifications</a>
-        <a href="employement.html">Professional Experience</a>
-        <a href="teaching.html">Teaching Experience</a>
-        <a href="supervision.html">Supervision Experience</a>
-        <a href="fundings.html">Funding & Awards</a>
-        <a href="publications.html">Publications</a>
-        <a href="projects.html">Research Projects</a>
-        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="education.html" class="nav-item">Education & Qualifications</a>
+        <div class="nav-group">
+            <a href="employment.html" class="nav-item parent-link" style="background: #eef2f6;">Professional Experience ↓</a>
+            <div class="sub-menu">
+                <a href="projects.html" class="sub-item">Research</a>
+                <a href="teaching.html" class="sub-item">Teaching</a>
+                <a href="supervision.html" class="sub-item">Supervision</a>
+                <a href="service.html" class="sub-item">Service & Leadership</a>
+            </div>
+        </div>
+        <a href="fundings.html" class="nav-item">Funding & Awards</a>
+        <a href="publications.html" class="nav-item">Publications & Impact</a>
+        <a href="outreach.html" class="nav-item">Outreach</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" class="nav-item" style="color:#888; font-size:0.85rem;">UTS Profile ↗</a>
+        <a href="contact.html" class="nav-item">Contact</a>
     </nav>
 </header>
 
@@ -85,7 +152,7 @@
             <div class="role">Research Associate in Passive Building Design</div>
             <span class="inst">Hub for Biotechnology in the Built Environment (HBBE); Newcastle University, UK</span>
             <div class="details">
-                <p><strong>Project:</strong> RESPIRE – Passive, Responsive, Variable Porosity Building Skins</p>
+                <p><strong>Project: RESPIRE</strong> – Passive, Responsive, Variable Porosity Building Skins</p>
                 <span class="funding">Budget: £328,800 | Funding: The Leverhulme Trust, UK</span>
             </div>
         </div>
@@ -96,8 +163,8 @@
             <span class="inst">Institute of Sustainable Building Design (ISBD); Heriot-Watt University, Edinburgh, UK</span>
             <div class="details">
                 <ul>
-                    <li><strong>CEDRI:</strong> Community-scale Energy Demand Reduction in India <span class="funding">(£1.3M)</span></li>
-                    <li><strong>Cooling for All:</strong> Global Challenges Research Fund.</li>
+                    <li><strong>CEDRI:</strong> Community-scale Energy Demand Reduction in India <span class="funding">£1.3M</span></li>
+                    <li><strong>Cooling for All:</strong> Global Challenges Research Fund (GCRF).</li>
                     <li><strong>Power Forward Challenge:</strong> Smart energy systems innovation (UK/Canada).</li>
                 </ul>
             </div>
@@ -133,7 +200,15 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+    </footer>
 </main>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
