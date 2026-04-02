@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumar Biswajit Debnath | UTS </title>
+    
     <style>
     :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
     
@@ -11,101 +12,107 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         margin: 0; 
         display: flex; 
-        flex-direction: row; /* Force side-by-side for desktop */
+        flex-direction: row; 
         line-height: 1.6; 
         color: var(--text); 
         min-height: 100vh;
     }
 
-    /* Sidebar Base */
+    /* --- FIXED SIDEBAR --- */
     header { 
-        flex: 0 0 280px; /* Fixed width for desktop */
+        flex: 0 0 280px; 
         background: #f8f9fa; 
         padding: 40px; 
         border-right: 1px solid #eee; 
         position: sticky; 
         top: 0; 
         height: 100vh; 
-        overflow-y: auto; /* Scrollable if nav is too long */
+        overflow-y: auto; 
         box-sizing: border-box;
     }
 
-    .profile-pic { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-
-    /* Navigation Links */
-    .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
-    
-    .nav-item {
-        text-decoration: none;
-        color: #444;
-        font-weight: 500;
-        padding: 10px 12px;
-        border-radius: 6px;
-        transition: all 0.2s ease;
-        display: block;
+    /* FIX: Adjusted Position to prevent head cutoff */
+    .profile-pic { 
+        width: 150px; 
+        height: 150px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+        object-position: top; /* This shifts the image down slightly */
+        border: 4px solid white; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        margin-bottom: 20px; 
     }
 
+    /* Navigation */
+    .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+    .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
     .nav-item:hover { background: #eef2f6; color: var(--primary); }
 
-    /* --- DROPDOWN LOGIC --- */
-    .sub-menu {
-        max-height: 0; /* Hidden by default */
-        overflow: hidden;
-        margin-left: 20px;
-        border-left: 2px solid #dee2e6;
-        padding-left: 10px;
-        transition: max-height 0.4s ease-out, opacity 0.3s ease;
-        opacity: 0;
-    }
-
-    /* Show sub-menu on hover of the group */
-    .nav-group:hover .sub-menu {
-        max-height: 200px; /* Adjust based on content height */
-        opacity: 1;
-        margin-bottom: 10px;
-    }
-
-    .sub-item {
-        display: block;
-        text-decoration: none;
-        color: #666;
-        font-size: 0.9rem;
-        padding: 6px 0;
-        transition: color 0.2s;
-    }
+    /* Dropdown Logic */
+    .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
+    .nav-group:hover .sub-menu { max-height: 200px; opacity: 1; margin-bottom: 10px; }
+    .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
     .sub-item:hover { color: var(--primary); }
+    .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
-    /* Parent Link Specifics */
-    .parent-link {
-        color: var(--primary);
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        letter-spacing: 0.5px;
+    /* --- MAIN CONTENT & PROJECTS --- */
+    main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
+    h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+    h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
+
+    /* --- NEW: Interactive Project Grid/Collage --- */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
     }
 
-    /* Main Content */
-    main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
+    /* Project Card Container */
+    .project-card {
+        background: #fdfdfd; 
+        border: 1px solid #eee; 
+        padding: 0; /* Remove padding for collage look */
+        border-radius: 8px; 
+        margin-bottom: 20px; 
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+        text-decoration: none; /* Make entire card clickable */
+        display: block;
+        color: inherit;
+    }
+
+    .project-card:hover {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* The Image Part */
+    .project-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* The Text Part (shows on hover) */
+    .project-info {
+        padding: 20px;
+        transition: background-color 0.3s;
+    }
+
+    .project-card:hover .project-info {
+        background-color: #f8f9fa; /* Slight shift on hover */
+    }
+
+    .project-info h3 { margin: 0; color: var(--primary); font-size: 1.2rem; }
+    .project-info p { margin: 10px 0 0; font-size: 0.9rem; color: #666; line-height: 1.5; }
 
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 768px) {
         body { flex-direction: column; }
-        header { 
-            flex: none; 
-            width: 100%; 
-            height: auto; 
-            position: relative; 
-            padding: 30px 20px;
-            border-right: none;
-            border-bottom: 1px solid #eee;
-        }
+        header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
         main { padding: 30px 20px; }
-        
-        /* On mobile, keep sub-menu visible or use a click (hover is tricky on touch) */
-        .nav-group .sub-menu {
-            max-height: none;
-            opacity: 1;
-        }
+        .nav-group .sub-menu { max-height: none; opacity: 1; }
     }
 </style>
 
@@ -116,16 +123,12 @@
     <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
     <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
         Chancellor's Research Fellow<br>
-        School of Architecture<br>
-        Faculty of Design and Society<br>
-        University of Technology Sydney<br>
-        Sydney, Australia<br></p>
+        University of Technology Sydney
     </p>
     
     <nav class="nav-links">
         <a href="index.html" class="nav-item">Home</a>
         <a href="education.html" class="nav-item">Education</a>
-        
         <div class="nav-group">
             <a href="employment.html" class="nav-item parent-link">Professional Experience ↓</a>
             <div class="sub-menu">
@@ -135,7 +138,6 @@
                 <a href="service.html" class="sub-item">Service & Leadership</a>
             </div>
         </div>
-
         <a href="fundings.html" class="nav-item">Funding & Awards</a>
         <a href="publications.html" class="nav-item">Publications</a>
         <a href="outreach.html" class="nav-item">Outreach</a>
