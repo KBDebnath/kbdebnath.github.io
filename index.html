@@ -172,12 +172,12 @@ header.collapsed .parent-link {
 <body>
 
 <header>
+    <header id="sidebar">
+    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+    
     <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
-    <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
-    <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
-        Chancellor's Research Fellow<br>
-        University of Technology Sydney
-    </p>
+    <h1 style="font-size: 1.2rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+    <p style="font-size: 0.8rem; color: #666;">University of Technology Sydney</p>
     
     <nav class="nav-links">
         <a href="index.html" class="nav-item">Home</a>
@@ -286,5 +286,19 @@ header.collapsed .parent-link {
     document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('collapsed');
+    
+    // Optional: Change the icon based on state
+    const btn = document.getElementById('menu-toggle');
+    if (sidebar.classList.contains('collapsed')) {
+        btn.innerHTML = "❯"; // Show an arrow when closed
+    } else {
+        btn.innerHTML = "☰"; // Show hamburger when open
+    }
+}
+
+    
 </body>
 </html>
