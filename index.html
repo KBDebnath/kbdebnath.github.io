@@ -114,6 +114,35 @@
         main { padding: 30px 20px; }
         .nav-group .sub-menu { max-height: none; opacity: 1; }
     }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+        footer {
+    background: #f8f9fa;
+    color: #666;
+    padding: 40px 60px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+        }
+        
+    /* If using the sidebar layout, ensure footer aligns with the main content */
+        body {
+            flex-wrap: wrap; /* Allows footer to wrap to the bottom */
+        }
+        
+        .footer-content p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 30px 20px;
+            }
+        }
+
+        
 </style>
 
 <body>
@@ -219,6 +248,19 @@
     </div>
             
 </main>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7;">
+            Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
+        </p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
