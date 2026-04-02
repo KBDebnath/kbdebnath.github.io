@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumar Biswajit Debnath | UTS </title>
+    <title>Contact | Kumar Biswajit Debnath</title>
     
     <style>
     :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
@@ -18,26 +18,56 @@
         min-height: 100vh;
     }
 
-    /* --- FIXED SIDEBAR --- */
+    /* --- SIDEBAR BASE STYLES --- */
     header { 
         flex: 0 0 280px; 
         background: #f8f9fa; 
-        padding: 40px; 
+        padding: 40px 20px; 
         border-right: 1px solid #eee; 
         position: sticky; 
         top: 0; 
         height: 100vh; 
-        overflow-y: auto; 
+        transition: all 0.3s ease;
+        overflow-x: hidden;
         box-sizing: border-box;
+        z-index: 1000;
     }
 
-    /* FIX: Adjusted Position to prevent head cutoff */
+    /* --- COLLAPSED STATE --- */
+    header.collapsed {
+        flex: 0 0 60px;
+        padding: 40px 10px;
+    }
+
+    /* Hide profile/text/nav when collapsed */
+    header.collapsed .profile-pic,
+    header.collapsed h1,
+    header.collapsed p,
+    header.collapsed .nav-links {
+        display: none;
+    }
+
+    /* --- TOGGLE BUTTON --- */
+    #menu-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 8px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        z-index: 1001;
+    }
+
     .profile-pic { 
         width: 150px; 
         height: 150px; 
         border-radius: 50%; 
         object-fit: cover; 
-        object-position: top; /* This shifts the image down slightly */
+        object-position: top; 
         border: 4px solid white; 
         box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
         margin-bottom: 20px; 
@@ -55,99 +85,48 @@
     .sub-item:hover { color: var(--primary); }
     .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
-    /* --- MAIN CONTENT & PROJECTS --- */
-    main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
+    /* --- MAIN CONTENT --- */
+    main { 
+        flex: 1; 
+        padding: 60px; 
+        background: var(--bg); 
+        min-width: 0; 
+        transition: all 0.3s ease;
+    }
+    
     h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
     h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
-
-    /* --- NEW: Interactive Project Grid/Collage --- */
-    .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        margin-top: 30px;
-    }
-
-    /* Project Card Container */
-    .project-card {
-        background: #fdfdfd; 
-        border: 1px solid #eee; 
-        padding: 0; /* Remove padding for collage look */
-        border-radius: 8px; 
-        margin-bottom: 20px; 
-        overflow: hidden;
-        transition: box-shadow 0.3s ease;
-        text-decoration: none; /* Make entire card clickable */
-        display: block;
-        color: inherit;
-    }
-
-    .project-card:hover {
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    /* The Image Part */
-    .project-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-bottom: 1px solid #eee;
-    }
-
-    /* The Text Part (shows on hover) */
-    .project-info {
-        padding: 20px;
-        transition: background-color 0.3s;
-    }
-
-    .project-card:hover .project-info {
-        background-color: #f8f9fa; /* Slight shift on hover */
-    }
-
-    .project-info h3 { margin: 0; color: var(--primary); font-size: 1.2rem; }
-    .project-info p { margin: 10px 0 0; font-size: 0.9rem; color: #666; line-height: 1.5; }
 
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 768px) {
         body { flex-direction: column; }
-        header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
+        header { 
+            flex: none; width: 100%; height: auto; 
+            position: relative; padding: 20px; 
+            border-right: none; border-bottom: 1px solid #eee;
+        }
+        header.collapsed { height: 60px; overflow: hidden; }
         main { padding: 30px 20px; }
-        .nav-group .sub-menu { max-height: none; opacity: 1; }
     }
 
-    /* --- MOBILE RESPONSIVENESS --- */
-        footer {
-    background: #f8f9fa;
-    color: #666;
-    padding: 40px 60px;
-    border-top: 1px solid #eee;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-        }
-        
-    /* If using the sidebar layout, ensure footer aligns with the main content */
-        body {
-            flex-wrap: wrap; /* Allows footer to wrap to the bottom */
-        }
-        
-        .footer-content p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            footer {
-                padding: 30px 20px;
-            }
-        }
-
-        
+    footer {
+        background: #f8f9fa;
+        color: #666;
+        padding: 40px 60px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 60px;
+    }
 </style>
+</head>
 
 <body>
 
-<header>
+<header id="sidebar">
+    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+    
     <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
     <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
     <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
@@ -176,7 +155,7 @@
 
 <main>
     <h1>Contact</h1>  
-    <h2>Adddress</h2>
+    <h2>Address</h2>
     <p><strong>Kumar Biswajit Debnath</strong><br>
         Chancellor's Research Fellow<br>
         School of Architecture<br>
@@ -186,26 +165,36 @@
         Ultimo NSW 2007<br>
         Australia</p>
 
-  
-    <h2>Email</h2><br>
+    <h2>Email</h2>
     <p>kumarbiswajit.debnath@uts.edu.au</p>
 
     <footer>
-    <div class="footer-content">
-        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
-        <p style="font-size: 0.8rem; opacity: 0.7;">
-            Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
-        </p>
-    </div>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">
+                Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
+            </p>
+        </div>
     </footer>
-
-    <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-
 </main>
+
+<script>
+    // Set Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toggle Sidebar Function
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        
+        const btn = document.getElementById('menu-toggle');
+        if (sidebar.classList.contains('collapsed')) {
+            btn.innerHTML = "❯"; 
+        } else {
+            btn.innerHTML = "☰";
+        }
+    }
+</script>
 
 </body>
 </html>
-    
-    
