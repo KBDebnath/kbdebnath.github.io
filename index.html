@@ -18,19 +18,35 @@
         min-height: 100vh;
     }
 
-    /* --- FIXED SIDEBAR --- */
-    header { 
-        flex: 0 0 280px; 
-        background: #f8f9fa; 
-        padding: 40px; 
-        border-right: 1px solid #eee; 
-        position: sticky; 
-        top: 0; 
-        height: 100vh; 
-        overflow-y: auto; 
-        box-sizing: border-box;
-    }
+    /* --- SIDEBAR BASE STYLES --- */
+header { 
+    flex: 0 0 280px; 
+    background: #f8f9fa; 
+    padding: 40px 20px; 
+    border-right: 1px solid #eee; 
+    position: sticky; 
+    top: 0; 
+    height: 100vh; 
+    transition: all 0.3s ease; /* Smooth sliding effect */
+    overflow-x: hidden;
+    box-sizing: border-box;
+    z-index: 1000;
+}
 
+/* --- COLLAPSED STATE --- */
+header.collapsed {
+    flex: 0 0 60px;
+    padding: 40px 10px;
+}
+
+/* Hide profile/text when collapsed */
+header.collapsed .profile-pic,
+header.collapsed h1,
+header.collapsed p,
+header.collapsed .nav-item,
+header.collapsed .parent-link {
+    display: none;
+}
     /* FIX: Adjusted Position to prevent head cutoff */
     .profile-pic { 
         width: 150px; 
@@ -56,7 +72,13 @@
     .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
     /* --- MAIN CONTENT & PROJECTS --- */
-    main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
+    main { 
+        flex: 1; 
+        padding: 60px; 
+        background: var(--bg); 
+        min-width: 0; 
+        transition: all 0.3s ease;
+        }
     h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
     h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
 
@@ -110,9 +132,11 @@
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 768px) {
         body { flex-direction: column; }
-        header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
-        main { padding: 30px 20px; }
-        .nav-group .sub-menu { max-height: none; opacity: 1; }
+        header { 
+            flex: none; width: 100%; height: auto; 
+            position: relative; padding: 20px; 
+        }
+        header.collapsed { height: 60px; overflow: hidden; }
     }
 
     /* --- MOBILE RESPONSIVENESS --- */
