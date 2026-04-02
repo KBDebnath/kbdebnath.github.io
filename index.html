@@ -12,40 +12,83 @@
         header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
         .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* Sidebar Grouping */
-        .nav-group {
-            margin: 10px 0;
+        /* Sidebar Container Adjustments */
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
-        
-        .nav-parent {
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        /* Sub-menu styling */
-        .nav-sub {
-            padding-left: 15px; /* Indents the sub-items */
-            border-left: 2px solid #eee; /* Adds a subtle vertical guide line */
-            margin-left: 5px;
-        }
-        
-        .nav-sub a {
-            display: block;
-            font-size: 0.9rem;
-            margin: 5px 0;
-            color: #555;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-        
-        .nav-sub a:hover {
-            color: var(--primary);
-            border-left: 2px solid var(--primary);
-            padding-left: 5px;
-        }
+    
+
+/* Base Nav Items */
+.nav-item {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: #eef2f6;
+    color: var(--primary);
+}
+
+/* Parent Link Styling */
+.parent-link {
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-top: 15px;
+}
+
+/* Sub-menu Container */
+.sub-menu {
+    margin-left: 20px; /* The Indentation */
+    border-left: 2px solid #dee2e6; /* Vertical line for visual grouping */
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+/* Individual Sub-items */
+.sub-item {
+    display: block;
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.sub-item:hover {
+    color: var(--primary);
+}
+
+/* Hover effect to show an active tick/line */
+.sub-item::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    width: 6px;
+    height: 2px;
+    background: transparent;
+    transition: background 0.2s;
+}
+
+.sub-item:hover::before {
+    background: var(--primary);
+}
+
+/* External Link Style */
+.external {
+    font-size: 0.85rem;
+    color: #888;
+}
         
         /* Main Content */
         main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
@@ -67,25 +110,24 @@
     <p>Chancellor's Research Fellow<br>School of Architecture<br>Faculty of Design and Society<br>University of Technology Sydney<br>Sydney, Australia<br></p>
     
     <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="education.html">Education & Qualifications</a>
+    <a href="index.html" class="nav-item">Home</a>
+    <a href="education.html" class="nav-item">Education & Qualifications</a>
     
     <div class="nav-group">
-        <a href="employment.html" class="nav-parent">Professional Experience</a>
-        
-        <div class="nav-sub">
-            <a href="projects.html">• Research</a>
-            <a href="teaching.html">• Teaching</a>
-            <a href="supervision.html">• Supervision</a>
-            <a href="service.html">• Service & Leadership</a>
+        <a href="employment.html" class="nav-item parent-link">Professional Experience</a>
+        <div class="sub-menu">
+            <a href="projects.html" class="sub-item">Research</a>
+            <a href="teaching.html" class="sub-item">Teaching</a>
+            <a href="supervision.html" class="sub-item">Supervision</a>
+            <a href="service.html" class="sub-item">Service & Leadership</a>
         </div>
     </div>
 
-    <a href="fundings.html">Funding & Awards</a>
-    <a href="publications.html">Publications & Impact</a>
-    <a href="outreach.html">Outreach</a>
-    <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
-    <a href="contact.html">Contact</a>
+    <a href="fundings.html" class="nav-item">Funding & Awards</a>
+    <a href="publications.html" class="nav-item">Publications & Impact</a>
+    <a href="outreach.html" class="nav-item">Outreach</a>
+    <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" class="nav-item external">UTS Profile ↗</a>
+    <a href="contact.html" class="nav-item">Contact</a>
     </nav>
 </header>
 
