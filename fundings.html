@@ -6,57 +6,114 @@
     <title>Funding & Awards | Kumar Biswajit Debnath</title>
     <style>
         :root { --primary: #005a9c; --text: #333; --bg: #ffffff; --accent: #d35400; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; flex-wrap: wrap; line-height: 1.6; color: var(--text); }
         
-        /* Sidebar */
-        header { flex: 1; min-width: 250px; background: #f8f9fa; height: 100vh; padding: 40px; border-right: 1px solid #eee; position: sticky; top: 0; }
-        .nav-links a { display: block; margin: 10px 0; color: var(--primary); text-decoration: none; font-weight: bold; }
-        
-        /* Main Content */
-        main { flex: 3; min-width: 350px; padding: 60px; background: var(--bg); }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: row; 
+            line-height: 1.6; 
+            color: var(--text); 
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        header { 
+            flex: 0 0 280px; 
+            background: #f8f9fa; 
+            padding: 40px; 
+            border-right: 1px solid #eee; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            overflow-y: auto; 
+            box-sizing: border-box;
+        }
+
+        .profile-pic { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            object-position: top; 
+            border: 4px solid white; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin-bottom: 20px; 
+        }
+
+        /* Navigation */
+        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
+        .nav-item:hover { background: #eef2f6; color: var(--primary); }
+
+        /* Dropdown Logic */
+        .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
+        .nav-group:hover .sub-menu { max-height: 250px; opacity: 1; margin-bottom: 10px; }
+        .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
+        .sub-item:hover { color: var(--primary); }
+        .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+
+        /* --- MAIN CONTENT --- */
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
-        h2 { border-bottom: 2px solid var(--primary); display: block; margin-top: 50px; padding-bottom: 5px; font-size: 1.2rem; text-transform: uppercase; }
+        h2 { border-bottom: 2px solid var(--primary); display: block; margin-top: 50px; padding-bottom: 5px; font-size: 1.1rem; text-transform: uppercase; color: #555; }
 
         /* Summary Dashboard */
-        .summary-box { background: #003358; color: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; display: flex; justify-content: space-around; text-align: center; }
-        .stat h3 { margin: 0; font-size: 2rem; color: #ffcc00; }
+        .summary-box { background: #003358; color: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; display: flex; justify-content: space-around; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .stat h3 { margin: 0; font-size: 2.2rem; color: #ffcc00; }
         .stat p { margin: 5px 0 0; font-size: 0.9rem; opacity: 0.9; }
 
         /* Role Tags */
-        .role-tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; margin-left: 10px; vertical-align: middle; }
-        .ci { background: #c0392b; } /* Chief Investigator */
-        .coi { background: #2980b9; } /* Co-Investigator */
-        .nr { background: #7f8c8d; } /* Named Researcher */
+        .role-tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; margin-left: 8px; vertical-align: middle; text-transform: uppercase; }
+        .ci { background: #c0392b; } 
+        .coi { background: #2980b9; } 
+        .nr { background: #7f8c8d; } 
 
         /* Grant Items */
-        .grant-item { margin-bottom: 25px; border-left: 4px solid #eee; padding-left: 20px; }
+        .grant-item { margin-bottom: 25px; border-left: 4px solid #f0f0f0; padding-left: 20px; transition: border-left-color 0.2s; }
         .grant-item:hover { border-left-color: var(--primary); }
         .grant-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
-        .grant-meta { font-size: 0.95em; color: #555; margin: 5px 0; }
+        .grant-meta { font-size: 0.95em; color: #555; margin: 4px 0; }
         .amount { color: var(--accent); font-weight: bold; }
-        .under-review { opacity: 0.7; font-style: italic; }
+        .under-review { opacity: 0.75; font-style: italic; }
 
-        @media (max-width: 768px) { header { height: auto; position: relative; border-right: none; } }
+        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
+            main { padding: 30px 20px; }
+            .nav-group .sub-menu { max-height: none; opacity: 1; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="Portrait.jpg" style="width:160px; height:160px; border-radius:50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" alt="Kumar Biswajit Debnath">
-    <h1>K. B. Debnath</h1>
-    <!--<p>Chancellor's Research Fellow<br>School of Architecture<br>Faculty of Design and Society<br>University of Technology Sydney<br>Sydney, Australia<br></p>--> 
+    <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
+    <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+    <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
+        Chancellor's Research Fellow<br>
+        University of Technology Sydney
+    </p>
     
     <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="education.html">Education & Qualifications</a>
-        <a href="employement.html">Professional Experience</a>
-        <a href="teaching.html">Teaching Experience</a>
-        <a href="supervision.html">Supervision Experience</a>
-        <a href="fundings.html">Funding & Awards</a>
-        <a href="publications.html">Publications</a>
-        <a href="projects.html">Research Projects</a>
-        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank">UTS Profile</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="education.html" class="nav-item">Education & Qualifications</a>
+        <div class="nav-group">
+            <a href="employment.html" class="nav-item parent-link">Professional Experience ↓</a>
+            <div class="sub-menu">
+                <a href="projects.html" class="sub-item">Research</a>
+                <a href="teaching.html" class="sub-item">Teaching</a>
+                <a href="supervision.html" class="sub-item">Supervision</a>
+                <a href="service.html" class="sub-item">Service & Leadership</a>
+            </div>
+        </div>
+        <a href="fundings.html" class="nav-item" style="background: #eef2f6;">Funding & Awards</a>
+        <a href="publications.html" class="nav-item">Publications & Impact</a>
+        <a href="outreach.html" class="nav-item">Outreach</a>
+        <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" class="nav-item" style="color:#888; font-size:0.85rem;">UTS Profile ↗</a>
+        <a href="contact.html" class="nav-item">Contact</a>
     </nav>
 </header>
 
@@ -66,7 +123,7 @@
     <div class="summary-box">
         <div class="stat">
             <h3>AUD 2.9M+</h3>
-            <p>Total Funding Secured (Since 2019)</p>
+            <p>Total Research Funding Secured</p>
         </div>
         <div class="stat">
             <h3>25%</h3>
@@ -74,19 +131,24 @@
         </div>
     </div>
 
-    <h2>Major Research Fellowships</h2>
+    <h2>Research Fellowships</h2>
     <div class="grant-item">
-        <span class="grant-title">BioCOOL: Data-driven bio-fabricated carbon-negative building skin for passive cooling <span class="role-tag ci">Lead CI</span></span>
-        <span class="grant-meta">2024 - 2028 | <span class="amount">AUD 663,000</span></span>
+        <span class="grant-title">BioCOOL: Data-driven bio-fabricated building skin for passive cooling <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">2024 – 2028 | <span class="amount">AUD 663,000</span></span>
         <span class="grant-meta">University of Technology Sydney, Australia</span>
     </div>
 
-    <h2>Awarded Research Projects</h2>
-    
+    <h2>Research Project Funding</h2>
     <div class="grant-item">
-        <span class="grant-title">VaCoBD: Fast-track vaccine cold-chain assessment for mass-scale COVID-19 vaccination <span class="role-tag coi">CoI</span></span>
-        <span class="grant-meta">2020 - 2022 | <span class="amount">AUD 1.2M</span> (GBP 631,661)</span>
+        <span class="grant-title">VaCoBD: Vaccine cold-chain assessment for mass-scale COVID-19 vaccination <span class="role-tag coi">CoI</span></span>
+        <span class="grant-meta">2020 – 2022 | <span class="amount">AUD 1.2M</span> (GBP 631,661)</span>
         <span class="grant-meta">UKRI GCRF/NF Agile Response Call, UK</span>
+    </div>
+
+    <div class="grant-item">
+        <span class="grant-title">Dispatchable Air Conditioning (DAC) <span class="role-tag coi">CoI</span></span>
+        <span class="grant-meta">2020 – 2021 | <span class="amount">AUD 550,215</span> (GBP 288,761)</span>
+        <span class="grant-meta">Innovate UK (Energy Catalyst 7), UK</span>
     </div>
 
     <div class="grant-item">
@@ -96,39 +158,51 @@
     </div>
 
     <div class="grant-item">
-        <span class="grant-title">Dispatchable Air Conditioning (DAC) <span class="role-tag coi">CoI</span></span>
-        <span class="grant-meta">2020 - 2021 | <span class="amount">AUD 550,215</span> (GBP 288,761)</span>
-        <span class="grant-meta">Innovate UK (Energy Catalyst 7), UK</span>
-    </div>
-
-    <div class="grant-item">
         <span class="grant-title">Decarbonisation of South Asian energy systems <span class="role-tag ci">Lead CI</span></span>
-        <span class="grant-meta">2019 - 2021 | <span class="amount">AUD 95,272</span> (GBP 50,000)</span>
+        <span class="grant-meta">2019 – 2021 | <span class="amount">AUD 95,272</span> (GBP 50,000)</span>
         <span class="grant-meta">EPSRC Supergen Energy Network Hub, UK</span>
     </div>
 
-    <h2 class="under-review">Proposals Under Review / Development</h2>
+    <h2 class="under-review">Under Review / Pipeline</h2>
     <div class="grant-item under-review">
         <span class="grant-title">DECRA Fellowship 2026: Decoding Bio-based Climate Adaptive Building Envelope <span class="role-tag ci">Lead CI</span></span>
-        <span class="grant-meta">Targeting: <span class="amount">AUD 809,560</span> | Timeline: 2027-2030</span>
+        <span class="grant-meta">Targeting: <span class="amount">AUD 809,560</span> | Timeline: 2027–2030</span>
     </div>
     
     <div class="grant-item under-review">
-        <span class="grant-title">MycoSat: Bio-fabricated satellites from biomass waste <span class="role-tag ci">Lead CI</span></span>
-        <span class="grant-meta">NSW Space Research Network (SRN) / ANSTO Round 2026-2</span>
+        <span class="grant-title">MycoSat: CubeSat development with Mycelium-Based Composites <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">ANSTO Merit-Based Access Application | Round: 2026-2</span>
     </div>
 
-    <h2>Awards & Recognition</h2>
+    <h2>Scholarships & Travel Grants</h2>
+    <div class="grant-item">
+        <span class="grant-title">2050 Energy and Carbon Emissions Pathways Modelling Scholarship</span>
+        <span class="grant-meta">2014 – 2017 | <span class="amount">AUD 101,415</span> (GBP 53,224)</span>
+        <span class="grant-meta">Cardiff University & Dept. of Energy & Climate Change (DECC), UK</span>
+    </div>
+    <div class="grant-item">
+        <span class="grant-title">Research Committee Travel Fund (PLEA 2022, Chile)</span>
+        <span class="grant-meta">2022 | Newcastle University, UK</span>
+    </div>
+
+    <h2>Awards & Accelerators</h2>
+    <div class="grant-item">
+        <span class="grant-title">CSIRO ON Prime 18 (D-Ply) <span class="role-tag ci">Lead CI</span></span>
+        <span class="grant-meta">2025 | Competitive Accelerator Program for Mycelium Commercialisation</span>
+    </div>
     <div class="grant-item">
         <span class="grant-title">Best Poster Award</span>
-        <span class="grant-meta">2023 | Royal Academy of Engineering / Supergen Energy Network, London</span>
-    </div>
-    <div class="grant-item">
-        <span class="grant-title">CSIRO ON Prime 18 (D-Ply)</span>
-        <span class="grant-meta">2025 | Competitive accelerator outcome for bio-composite commercialisation</span>
+        <span class="grant-meta">2023 | Supergen Energy Network Conference, Royal Academy of Engineering, London</span>
     </div>
 
+    <footer>
+        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+    </footer>
 </main>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
