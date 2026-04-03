@@ -88,11 +88,30 @@
         .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
         .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
-        /* Sidebar Footer (Social Links) */
-        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
-        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
-        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
-        .scholar-stats-sidebar a:hover { color: var(--primary); }
+        /* --- External Profiles Sidebar Styling --- */
+        .sidebar-footer {
+            margin-top: auto; 
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .scholar-stats-sidebar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 10px 12px;
+        }
+
+        .scholar-stats-sidebar a {
+            color: #666;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .scholar-stats-sidebar a:hover {
+            color: var(--primary);
+        }
 
         /* --- MAIN CONTENT --- */
         main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
