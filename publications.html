@@ -48,6 +48,8 @@
             overflow-x: hidden;
             box-sizing: border-box;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
 
         #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
@@ -80,13 +82,13 @@
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
         .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
-        .nav-item.active { background: #eef2f6; color: var(--primary); font-weight: bold; }
 
         .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
         .nav-group:hover .sub-menu { max-height: 200px; opacity: 1; margin-bottom: 10px; }
         .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
         .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
+        /* Sidebar Footer (Social Links) */
         .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
         .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
         .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
@@ -95,6 +97,38 @@
         /* --- MAIN CONTENT --- */
         main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+
+        /* --- METRICS GRID (BOX LAYOUT RESTORED) --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
 
         /* --- MULTI-COLOR TAB SYSTEM --- */
         .tabs-container { margin-top: 30px; width: 100%; }
@@ -131,13 +165,16 @@
 
         /* Publication List Items */
         .pub-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
-        .pub-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .pub-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; text-decoration: none; }
+        .pub-authors { display: block; font-size: 0.95rem; margin: 5px 0; }
+        .pub-journal { font-style: italic; color: #555; font-size: 0.95rem; }
+        .doi { font-size: 0.85rem; color: #005a9c; text-decoration: none; display: block; margin-top: 5px; }
         .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; margin-right: 5px; font-weight: bold; background: #eee; }
         .q1 { background: #d4edda; color: #155724; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        footer { background: #f8f9fa; color: #666; padding: 40px 60px; border-top: 1px solid #eee; text-align: center; width: 100%; box-sizing: border-box; }
+        footer { background: #f8f9fa; color: #666; padding: 40px 60px; border-top: 1px solid #eee; text-align: center; width: 100%; box-sizing: border-box; margin-top: 50px; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
