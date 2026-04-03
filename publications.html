@@ -185,13 +185,52 @@
         #tab-reports:checked ~ .tab-content-wrapper #content-reports { display: block; }
 
         /* Publication List Items */
-        .pub-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .pub-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; position: relative; }
         .pub-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; text-decoration: none; }
         .pub-authors { display: block; font-size: 0.95rem; margin: 5px 0; }
         .pub-journal { font-style: italic; color: #555; font-size: 0.95rem; }
         .doi { font-size: 0.85rem; color: #005a9c; text-decoration: none; display: block; margin-top: 5px; }
-        .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; margin-right: 5px; font-weight: bold; background: #eee; }
-        .q1 { background: #d4edda; color: #155724; }
+        
+        /* --- Restored Metric Colors --- */
+        .pub-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { 
+            font-size: 0.7rem; padding: 3px 10px; border-radius: 4px; 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; 
+        }
+        .q1 { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .q2 { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .if { background: #e1f5fe; color: #01579b; border: 1px solid #b3e5fc; }
+        .am { background: #f3e5f5; color: #4a148c; border: 1px solid #e1bee7; }
+
+        /* --- Restored Chamfer Boxes --- */
+        .Reprint, .Highlight-box {
+            margin-top: 15px;
+            padding: 12px 18px;
+            background: #fdfdfd;
+            border-left: 4px solid var(--primary);
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
+            position: relative;
+            /* Creates the beveled/chamfered top-right corner */
+            clip-path: polygon(0 0, 96% 0, 100% 20%, 100% 100%, 0 100%);
+        }
+
+        .Reprint strong, .Highlight-box strong {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .reprint-link {
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 600;
+        }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
