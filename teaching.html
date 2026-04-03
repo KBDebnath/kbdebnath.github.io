@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teaching Experience | Kumar Biswajit Debnath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
     <style>
         :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
         
@@ -17,42 +20,86 @@
             min-height: 100vh;
         }
 
-        /* --- SIDEBAR --- */
-        header { 
+        /* --- SIDEBAR BASE STYLES --- */
+        #sidebar { 
             flex: 0 0 280px; 
             background: #f8f9fa; 
-            padding: 40px; 
+            padding: 40px 20px; 
             border-right: 1px solid #eee; 
             position: sticky; 
             top: 0; 
             height: 100vh; 
-            overflow-y: auto; 
+            transition: all 0.3s ease;
+            overflow-x: hidden;
             box-sizing: border-box;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
 
-        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        /* --- COLLAPSED STATE --- */
+        #sidebar.collapsed {
+            flex: 0 0 60px;
+            padding: 40px 10px;
+        }
+
+        #sidebar.collapsed .profile-pic,
+        #sidebar.collapsed h1,
+        #sidebar.collapsed p,
+        #sidebar.collapsed .nav-links,
+        #sidebar.collapsed .sidebar-footer {
+            display: none;
+        }
+
+        #menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .profile-pic { 
+            width: 150px; height: 150px; 
+            border-radius: 50%; object-fit: cover; object-position: top; 
+            border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin-bottom: 20px; 
+        }
+
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
         .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
+
         .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
         .nav-group:hover .sub-menu { max-height: 250px; opacity: 1; margin-bottom: 10px; }
         .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
         .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
-        /* --- MAIN CONTENT --- */
-        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; }
-        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-        .legend { background: #f1f8ff; padding: 15px; border-radius: 8px; margin-bottom: 30px; font-size: 0.9em; border-left: 4px solid var(--primary); }
-        .university-header { background: #eee; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; color: var(--primary); }
+        /* --- EXTERNAL PROFILES SIDEBAR --- */
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); }
 
-        /* --- DYNAMIC TABLE LOGIC --- */
+        /* --- MAIN CONTENT --- */
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        
+        .legend { background: #f1f8ff; padding: 15px; border-radius: 8px; margin-bottom: 30px; font-size: 0.9em; border-left: 4px solid var(--primary); }
+        .university-header { background: #eee; padding: 10px 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; color: var(--primary); font-size: 1rem; }
+
+        /* --- TABLE STYLING --- */
         .teaching-section { width: 100%; margin-bottom: 40px; }
         
         table { 
             width: 100%; 
             border-collapse: collapse; 
             margin-bottom: 30px;
-            /* layout is auto to allow text wrapping */
             table-layout: auto; 
         }
 
@@ -61,19 +108,16 @@
             padding: 12px 8px; 
             border-bottom: 1px solid #eee; 
             vertical-align: middle;
-            /* Force text to wrap inside the cell */
             word-wrap: break-word;
             overflow-wrap: break-word;
-            word-break: normal;
         }
 
         th { background: #fafafa; font-weight: bold; color: #666; text-transform: uppercase; font-size: 0.75rem; }
         
-        /* Column Widths (Proportional) */
-        th:nth-child(1), td:nth-child(1) { width: 60%; } /* Course Name gets the most room */
-        th:nth-child(2), td:nth-child(2) { width: 15%; } /* Level */
-        th:nth-child(3), td:nth-child(3) { width: 10%; } /* Size */
-        th:nth-child(4), td:nth-child(4) { width: 15%; text-align: center; } /* Type */
+        th:nth-child(1), td:nth-child(1) { width: 60%; } 
+        th:nth-child(2), td:nth-child(2) { width: 15%; }
+        th:nth-child(3), td:nth-child(3) { width: 10%; }
+        th:nth-child(4), td:nth-child(4) { width: 15%; text-align: center; }
 
         .type-tag { 
             display: inline-block; 
@@ -87,52 +131,59 @@
         }
         .ds { background: #27ae60; } .lb { background: #2980b9; } .ct { background: #8e44ad; }
 
-        /* --- MOBILE ADJUSTMENTS --- */
+        footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.85rem; }
+
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            header { flex: none; width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid #eee; }
+            #sidebar { flex: none; width: 100%; height: auto; position: relative; padding: 20px; border-right: none; border-bottom: 1px solid #eee; }
+            #sidebar.collapsed { height: 50px; padding: 10px; }
             main { padding: 30px 15px; }
             .nav-group .sub-menu { max-height: none; opacity: 1; }
-            
-            h1 { font-size: 1.8rem; }
-            
-            /* Reduce padding and font size for small screens to fit everything */
-            th, td { padding: 8px 4px; font-size: 0.85rem; }
-            .type-tag { padding: 1px 5px; font-size: 0.65rem; }
+            th, td { padding: 8px 4px; font-size: 0.8rem; }
         }
-
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.85rem; }
-        
     </style>
 </head>
-    
+
 <body>
 
-<header>
-    <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
-    <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
-    <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
-        Chancellor's Research Fellow<br>
-        University of Technology Sydney
-    </p>
+<header id="sidebar">
+    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
     
-    <nav class="nav-links">
-        <a href="index.html" class="nav-item">Home</a>
-        <a href="education.html" class="nav-item">Education & Professional Qualifications</a>
-        <div class="nav-group">
-            <a href="employment.html" class="nav-item parent-link">Professional Experience ↓</a>
-            <div class="sub-menu">
-                <a href="projects.html" class="sub-item">Research</a>
-                <a href="teaching.html" class="sub-item" style="color: var(--primary); font-weight: bold;">Teaching</a>
-                <a href="supervision.html" class="sub-item">Supervision</a>
-                <a href="service.html" class="sub-item">Service & Leadership</a>
+    <div class="sidebar-top">
+        <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
+        <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+        <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
+            Chancellor's Research Fellow<br>
+            University of Technology Sydney
+        </p>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="education.html" class="nav-item">Education & Qualifications</a>
+            <div class="nav-group">
+                <a href="employment.html" class="nav-item parent-link">Professional Experience ↓</a>
+                <div class="sub-menu">
+                    <a href="projects.html" class="sub-item">Research</a>
+                    <a href="teaching.html" class="sub-item" style="color: var(--primary); font-weight: bold;">Teaching</a>
+                    <a href="supervision.html" class="sub-item">Supervision</a>
+                    <a href="service.html" class="sub-item">Service & Leadership</a>
+                </div>
             </div>
+            <a href="fundings.html" class="nav-item">Funding & Awards</a>
+            <a href="publications.html" class="nav-item">Publications & Impact</a>
+            <a href="outreach.html" class="nav-item">Outreach</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+    </div>
+
+    <div class="sidebar-footer">
+        <div class="scholar-stats-sidebar">
+            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS Profile"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         </div>
-        <a href="fundings.html" class="nav-item">Funding & Awards</a>
-        <a href="publications.html" class="nav-item">Publications & Impact</a>
-        <a href="outreach.html" class="nav-item">Outreach</a>
-        <a href="contact.html" class="nav-item">Contact</a>
-    </nav>
+    </div>
 </header>
 
 <main>
@@ -193,20 +244,26 @@
         </table>
     </div>
     
-<footer>
-    <div class="footer-content">
-        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
-        <p style="font-size: 0.8rem; opacity: 0.7;">
-            Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
-        </p>
-    </div>
-
-</footer>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">
+                Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
+            </p>
+        </div>
+    </footer>
     
 </main>
 
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        const btn = document.getElementById('menu-toggle');
+        btn.innerHTML = sidebar.classList.contains('collapsed') ? "❯" : "☰";
+    }
 </script>
 
 </body>
