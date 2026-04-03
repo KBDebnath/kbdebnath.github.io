@@ -235,18 +235,19 @@
     </div>
 
     <footer>
-    <div class="footer-content">
-        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
-        <p style="font-size: 0.8rem; opacity: 0.7;">
-            Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
-        </p>
-    </div>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">
+                Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
+            </p>
+        </div>
     </footer>
 
 </main>
 
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+    
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('collapsed');
