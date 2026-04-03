@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Kumar Biswajit Debnath</title>
+    <title>Publications | Kumar Biswajit Debnath</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
@@ -14,7 +14,16 @@
     <link rel="shortcut icon" href="favicon.ico">
     
     <style>
-        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        :root { 
+            --primary: #005a9c; 
+            --text: #333; 
+            --bg: #ffffff; 
+            /* Publication Tab Colors */
+            --color-journals: #005a9c;
+            --color-books: #8e44ad;
+            --color-conf: #27ae60;
+            --color-reports: #e67e22;
+        }
         
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -26,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* --- SIDEBAR BASE STYLES --- */
+        /* --- SIDEBAR BASE STYLES (MATCHING INDEX) --- */
         #sidebar { 
             flex: 0 0 280px; 
             background: #f8f9fa; 
@@ -41,19 +50,12 @@
             z-index: 1000;
         }
 
-        /* --- COLLAPSED STATE --- */
-        #sidebar.collapsed {
-            flex: 0 0 60px;
-            padding: 40px 10px;
-        }
-
-        /* Hide profile/text when collapsed */
+        #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
         #sidebar.collapsed .profile-pic,
         #sidebar.collapsed h1,
         #sidebar.collapsed p,
-        #sidebar.collapsed .nav-links {
-            display: none;
-        }
+        #sidebar.collapsed .nav-links,
+        #sidebar.collapsed .sidebar-footer { display: none; }
 
         #menu-toggle {
             position: absolute;
@@ -78,95 +80,68 @@
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
         .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
+        .nav-item.active { background: #eef2f6; color: var(--primary); font-weight: bold; }
 
         .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
         .nav-group:hover .sub-menu { max-height: 200px; opacity: 1; margin-bottom: 10px; }
         .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
         .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); }
+
         /* --- MAIN CONTENT --- */
-        main { 
-            flex: 1; 
-            padding: 60px; 
-            background: var(--bg); 
-            min-width: 0; 
-            transition: all 0.3s ease;
-        }
-
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
 
-        /* Project Grid */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+        /* --- MULTI-COLOR TAB SYSTEM --- */
+        .tabs-container { margin-top: 30px; width: 100%; }
+        input[name="pub-tabs"] { display: none; }
+
+        .tab-headers { display: flex; gap: 5px; margin-bottom: -1px; position: relative; z-index: 2; flex-wrap: wrap; }
+        .tab-label { 
+            padding: 12px 20px; cursor: pointer; font-weight: 700; font-size: 0.75rem; 
+            text-transform: uppercase; color: #666; border-radius: 8px 8px 0 0; 
+            transition: all 0.3s ease; border: 1px solid #ddd; background: #f8f9fa;
         }
 
-        .project-card {
-            background: #fdfdfd; 
-            border: 1px solid #eee; 
-            border-radius: 8px; 
-            overflow: hidden;
-            transition: box-shadow 0.3s ease;
-            text-decoration: none;
-            display: block;
-            color: inherit;
+        /* Tab Logic */
+        #tab-journals:checked ~ .tab-headers label[for="tab-journals"] { background: white; color: var(--color-journals); border-top: 3px solid var(--color-journals); border-bottom-color: white; }
+        #tab-books:checked ~ .tab-headers label[for="tab-books"] { background: white; color: var(--color-books); border-top: 3px solid var(--color-books); border-bottom-color: white; }
+        #tab-conf:checked ~ .tab-headers label[for="tab-conf"] { background: white; color: var(--color-conf); border-top: 3px solid var(--color-conf); border-bottom-color: white; }
+        #tab-reports:checked ~ .tab-headers label[for="tab-reports"] { background: white; color: var(--color-reports); border-top: 3px solid var(--color-reports); border-bottom-color: white; }
+
+        .tab-content-wrapper { 
+            border: 1px solid #ddd; padding: 30px; border-radius: 0 8px 8px 8px; 
+            background: #fff; min-height: 400px; transition: background-color 0.4s ease;
         }
 
-        .project-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .project-image { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #eee; }
-        .project-info { padding: 20px; }
-        .project-info h3 { margin: 0; color: var(--primary); font-size: 1.2rem; }
-        .project-info p { margin: 10px 0 0; font-size: 0.9rem; color: #666; }
+        /* Unique Background Tints */
+        #tab-books:checked ~ .tab-content-wrapper { background-color: #faf7ff; }
+        #tab-conf:checked ~ .tab-content-wrapper { background-color: #f7fffb; }
+        #tab-reports:checked ~ .tab-content-wrapper { background-color: #fffaf5; }
 
-        footer {
-            background: #f8f9fa;
-            color: #666;
-            padding: 40px 60px;
-            border-top: 1px solid #eee;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
+        .tab-panel { display: none; animation: fadeIn 0.5s ease; }
+        #tab-journals:checked ~ .tab-content-wrapper #content-journals,
+        #tab-books:checked ~ .tab-content-wrapper #content-books,
+        #tab-conf:checked ~ .tab-content-wrapper #content-conf,
+        #tab-reports:checked ~ .tab-content-wrapper #content-reports { display: block; }
+
+        /* Publication List Items */
+        .pub-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .pub-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; margin-right: 5px; font-weight: bold; background: #eee; }
+        .q1 { background: #d4edda; color: #155724; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar { flex: none; width: 100%; height: auto; position: relative; padding: 20px; }
-            #sidebar.collapsed { height: 50px; padding: 10px; }
+            #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
             main { padding: 30px 20px; }
         }
-
-        /* --- External Profiles Sidebar Styling --- */
-.sidebar-footer {
-    margin-top: auto; /* Pushes links to the bottom of the sidebar */
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.scholar-stats-sidebar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 10px 12px;
-}
-
-.scholar-stats-sidebar a {
-    color: #666;
-    font-size: 1.2rem;
-    transition: color 0.2s;
-    text-decoration: none;
-}
-
-.scholar-stats-sidebar a:hover {
-    color: var(--primary);
-}
-
-/* Ensure they hide when sidebar is collapsed */
-header.collapsed .sidebar-footer {
-    display: none;
-}
     </style>
 </head>
 
@@ -196,7 +171,7 @@ header.collapsed .sidebar-footer {
                 </div>
             </div>
             <a href="fundings.html" class="nav-item">Funding & Awards</a>
-            <a href="publications.html" class="nav-item">Publications & Impact</a>
+            <a href="publications.html" class="nav-item active">Publications & Impact</a>
             <a href="outreach.html" class="nav-item">Outreach</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
