@@ -6,160 +6,141 @@
     <title>Publications | Kumar Biswajit Debnath</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" href="favicon.ico">
     
     <style>
         :root { 
             --primary: #005a9c; 
             --text: #333; 
-            --bg: #f4f7f9; 
-            --accent: #d35400; 
-            --sidebar-width: 280px;
-            /* Tab Colors */
-            --color-journals: #005a9c; 
-            --color-books: #8e44ad;    
-            --color-conf: #27ae60;     
-            --color-reports: #e67e22;  
+            --bg: #ffffff; 
+            /* Publication Tab Colors */
+            --color-journals: #005a9c;
+            --color-books: #8e44ad;
+            --color-conf: #27ae60;
+            --color-reports: #e67e22;
         }
         
-        * { box-sizing: border-box; }
-
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             display: flex; 
-            background-color: var(--bg);
+            flex-direction: row; 
+            line-height: 1.6; 
             color: var(--text); 
             min-height: 100vh;
         }
 
-        /* --- SIDEBAR REPAIR --- */
-        #sidebar {
-            width: var(--sidebar-width);
-            background: white;
-            height: 100vh;
-            position: fixed;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #ddd;
-            padding: 30px 20px;
-            z-index: 1000;
+        /* --- SIDEBAR BASE STYLES (MATCHING INDEX) --- */
+        #sidebar { 
+            flex: 0 0 280px; 
+            background: #f8f9fa; 
+            padding: 40px 20px; 
+            border-right: 1px solid #eee; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
             transition: all 0.3s ease;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            z-index: 1000;
         }
 
-        main {
-            margin-left: var(--sidebar-width);
-            padding: 40px;
-            width: 100%;
-            max-width: 1100px;
+        #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
+        #sidebar.collapsed .profile-pic,
+        #sidebar.collapsed h1,
+        #sidebar.collapsed p,
+        #sidebar.collapsed .nav-links,
+        #sidebar.collapsed .sidebar-footer { display: none; }
+
+        #menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 1001;
         }
 
-        .profile-pic { width: 120px; border-radius: 50%; margin-bottom: 15px; border: 3px solid #eee; }
-        .nav-links { margin-top: 30px; display: flex; flex-direction: column; gap: 5px; }
-        .nav-item { text-decoration: none; color: #555; padding: 10px; border-radius: 5px; font-size: 0.9rem; transition: 0.2s; }
-        .nav-item:hover { background: #f0f4f8; color: var(--primary); }
-
-        /* --- METRICS GRID --- */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
+        .profile-pic { 
+            width: 150px; height: 150px; 
+            border-radius: 50%; object-fit: cover; object-position: top; 
+            border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin-bottom: 20px; 
         }
-        .metric-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--primary);
-        }
-        .metric-value { display: block; font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        .metric-label { font-size: 0.75rem; color: #777; text-transform: uppercase; }
 
-        /* --- TAB SYSTEM REPAIR --- */
+        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
+        .nav-item:hover { background: #eef2f6; color: var(--primary); }
+        .nav-item.active { background: #eef2f6; color: var(--primary); font-weight: bold; }
+
+        .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
+        .nav-group:hover .sub-menu { max-height: 200px; opacity: 1; margin-bottom: 10px; }
+        .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
+        .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); }
+
+        /* --- MAIN CONTENT --- */
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+
+        /* --- MULTI-COLOR TAB SYSTEM --- */
         .tabs-container { margin-top: 30px; width: 100%; }
         input[name="pub-tabs"] { display: none; }
 
-        .tab-headers {
-            display: flex;
-            gap: 5px;
-            margin-bottom: -1px;
-            z-index: 2;
-            position: relative;
+        .tab-headers { display: flex; gap: 5px; margin-bottom: -1px; position: relative; z-index: 2; flex-wrap: wrap; }
+        .tab-label { 
+            padding: 12px 20px; cursor: pointer; font-weight: 700; font-size: 0.75rem; 
+            text-transform: uppercase; color: #666; border-radius: 8px 8px 0 0; 
+            transition: all 0.3s ease; border: 1px solid #ddd; background: #f8f9fa;
         }
 
-        .tab-label {
-            padding: 12px 18px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #777;
-            border-radius: 8px 8px 0 0;
-            border: 1px solid #ddd;
-            background: #eee;
-            transition: 0.3s;
-        }
-
-        /* Active Tab Logic */
+        /* Tab Logic */
         #tab-journals:checked ~ .tab-headers label[for="tab-journals"] { background: white; color: var(--color-journals); border-top: 3px solid var(--color-journals); border-bottom-color: white; }
         #tab-books:checked ~ .tab-headers label[for="tab-books"] { background: white; color: var(--color-books); border-top: 3px solid var(--color-books); border-bottom-color: white; }
         #tab-conf:checked ~ .tab-headers label[for="tab-conf"] { background: white; color: var(--color-conf); border-top: 3px solid var(--color-conf); border-bottom-color: white; }
         #tab-reports:checked ~ .tab-headers label[for="tab-reports"] { background: white; color: var(--color-reports); border-top: 3px solid var(--color-reports); border-bottom-color: white; }
 
-        /* Background Colors for Content Area */
-        .tab-content-wrapper {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 30px;
-            border-radius: 0 8px 8px 8px;
-            min-height: 400px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: background-color 0.4s ease;
+        .tab-content-wrapper { 
+            border: 1px solid #ddd; padding: 30px; border-radius: 0 8px 8px 8px; 
+            background: #fff; min-height: 400px; transition: background-color 0.4s ease;
         }
 
+        /* Unique Background Tints */
         #tab-books:checked ~ .tab-content-wrapper { background-color: #faf7ff; }
         #tab-conf:checked ~ .tab-content-wrapper { background-color: #f7fffb; }
         #tab-reports:checked ~ .tab-content-wrapper { background-color: #fffaf5; }
 
-        /* Visibility Logic */
-        .tab-panel { display: none; }
+        .tab-panel { display: none; animation: fadeIn 0.5s ease; }
         #tab-journals:checked ~ .tab-content-wrapper #content-journals,
         #tab-books:checked ~ .tab-content-wrapper #content-books,
         #tab-conf:checked ~ .tab-content-wrapper #content-conf,
-        #tab-reports:checked ~ .tab-content-wrapper #content-reports {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
+        #tab-reports:checked ~ .tab-content-wrapper #content-reports { display: block; }
 
-        /* --- PUBLICATION LIST STYLING --- */
-        .pub-list { display: flex; flex-direction: column; gap: 20px; }
-        .pub-item { 
-            background: rgba(255,255,255,0.6); 
-            padding: 20px; 
-            border-radius: 8px; 
-            border-left: 4px solid #ddd;
-            transition: transform 0.2s;
-        }
-        .pub-item:hover { transform: translateX(5px); background: white; }
-        .pub-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; margin-bottom: 5px; }
-        .pub-authors { display: block; font-size: 0.95rem; margin-bottom: 5px; }
-        .pub-journal { display: block; font-style: italic; color: #555; margin-bottom: 10px; }
-        
-        .tag { 
-            font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; 
-            background: #eee; font-weight: bold; margin-right: 5px; 
-        }
+        /* Publication List Items */
+        .pub-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .pub-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; margin-right: 5px; font-weight: bold; background: #eee; }
         .q1 { background: #d4edda; color: #155724; }
-        .doi { font-size: 0.85rem; color: #005a9c; text-decoration: none; display: inline-block; margin-top: 10px; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #ddd; }
-            main { margin-left: 0; padding: 20px; }
+            #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
+            main { padding: 30px 20px; }
         }
     </style>
 </head>
