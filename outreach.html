@@ -171,11 +171,36 @@
         </div>
     </section>
 
-</main>
+    
 
 <footer>
-    <p>&copy; 2026 Kumar Biswajit Debnath | Built with passion for sustainable architecture.</p>
+    <div class="footer-content">
+        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.7;">
+            Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
+        </p>
+    </div>
 </footer>
+
+</main>
+
+<script>
+    // Set Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toggle Function
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        
+        const btn = document.getElementById('menu-toggle');
+        if (sidebar.classList.contains('collapsed')) {
+            btn.innerHTML = "❯";
+        } else {
+            btn.innerHTML = "☰";
+        }
+    }
+</script>
 
 </body>
 </html>
