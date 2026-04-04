@@ -8,33 +8,83 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
     <style>
-        :root { 
-            --primary: #005a9c; 
-            --text: #333; 
-            --bg: #ffffff; 
-            --color-exhibit: #e67e22;
-            --color-talks: #8e44ad;
-            --color-conf: #27ae60;
-        }
+        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
         
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: row; 
+            line-height: 1.6; 
+            color: var(--text); 
+            min-height: 100vh;
+        }
 
-        /* Sidebar Styles (Matching Index/Pubs) */
-        #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; }
-        .profile-pic { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .nav-links { display: flex; flex-direction: column; gap: 5px; }
-        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px; border-radius: 6px; }
-        .nav-item:hover, .active { background: #eef2f6; color: var(--primary); }
+        /* --- SIDEBAR BASE STYLES --- */
+        #sidebar { 
+            flex: 0 0 280px; 
+            background: #f8f9fa; 
+            padding: 40px 20px; 
+            border-right: 1px solid #eee; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
 
-        /* Sidebar Footer Profiles */
-        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
-        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start; }
-        .scholar-stats-sidebar a { color: #666; font-size: 1.1rem; transition: 0.2s; }
-        .scholar-stats-sidebar a:hover { color: var(--primary); transform: translateY(-2px); }
+        /* --- COLLAPSED STATE --- */
+        #sidebar.collapsed {
+            flex: 0 0 60px;
+            padding: 40px 10px;
+        }
+
+        /* Hide profile/text when collapsed */
+        #sidebar.collapsed .profile-pic,
+        #sidebar.collapsed h1,
+        #sidebar.collapsed p,
+        #sidebar.collapsed .nav-links,
+        #sidebar.collapsed .sidebar-footer {
+            display: none;
+        }
+
+        #menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .profile-pic { 
+            width: 150px; height: 150px; 
+            border-radius: 50%; object-fit: cover; object-position: top; 
+            border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin-bottom: 20px; 
+        }
+
+        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
+        .nav-item:hover { background: #eef2f6; color: var(--primary); }
+
+        .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
+        .nav-group:hover .sub-menu { max-height: 200px; opacity: 1; margin-bottom: 10px; }
+        .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
+        .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
         /* Main Content */
         main { flex: 1; padding: 60px; background: var(--bg); }
         h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
 
         /* Outreach Item Styling */
         .outreach-section { margin-bottom: 50px; }
@@ -60,23 +110,47 @@
 </head>
 <body>
 
-<aside id="sidebar">
-    <img src="your-photo.jpg" alt="Kumar Biswajit Debnath" class="profile-pic">
-    <nav class="nav-links">
-        <a href="index.html" class="nav-item">Home</a>
-        <a href="publications.html" class="nav-item">Publications</a>
-        <a href="outreach.html" class="nav-item active">Outreach</a>
-    </nav>
+<header id="sidebar">
+    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+    
+    <div class="sidebar-top">
+        <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
+        <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+        <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
+            Chancellor's Research Fellow<br>
+            University of Technology Sydney
+        </p>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="education.html" class="nav-item">Education & Qualifications</a>
+            <div class="nav-group">
+                <a href="employment.html" class="nav-item parent-link">Professional Experience ↓</a>
+                <div class="sub-menu">
+                    <a href="projects.html" class="sub-item">Research</a>
+                    <a href="teaching.html" class="sub-item">Teaching</a>
+                    <a href="supervision.html" class="sub-item">Supervision</a>
+                    <a href="service.html" class="sub-item">Service & Leadership</a>
+                </div>
+            </div>
+            <a href="fundings.html" class="nav-item">Funding & Awards</a>
+            <a href="publications.html" class="nav-item">Publications & Impact</a>
+            <a href="outreach.html" class="nav-item">Outreach</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+    </div>
 
     <div class="sidebar-footer">
         <div class="scholar-stats-sidebar">
-            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS Profile"><i class="fa-solid fa-graduation-cap"></i></a>
             <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://www.scopus.com/authid/detail.uri?authorId=55845704000" target="_blank" title="Scopus"><i class="fa-solid fa-book-bookmark"></i></a>
             <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.researchgate.net/profile/Kumar-Biswajit-Debnath" target="_blank" title="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
         </div>
     </div>
-</aside>
+</header>
 
 <main>
     <h1>Outreach & Engagement</h1>
