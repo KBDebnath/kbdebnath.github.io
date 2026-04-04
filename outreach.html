@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outreach | Dr. Kumar Biswajit Debnath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
+    <style>
+        :root { 
+            --primary: #005a9c; 
+            --text: #333; 
+            --bg: #ffffff; 
+            --color-exhibit: #e67e22;
+            --color-talks: #8e44ad;
+            --color-conf: #27ae60;
+        }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
 
+        /* Sidebar Styles (Matching Index/Pubs) */
+        #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; }
+        .profile-pic { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .nav-links { display: flex; flex-direction: column; gap: 5px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px; border-radius: 6px; }
+        .nav-item:hover, .active { background: #eef2f6; color: var(--primary); }
+
+        /* Sidebar Footer Profiles */
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.1rem; transition: 0.2s; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); transform: translateY(-2px); }
+
+        /* Main Content */
+        main { flex: 1; padding: 60px; background: var(--bg); }
+        h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+        /* Outreach Item Styling */
+        .outreach-section { margin-bottom: 50px; }
+        .outreach-category { font-size: 1.4rem; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--primary); padding-left: 15px; }
+        
+        .year-group { display: flex; gap: 30px; margin-bottom: 25px; position: relative; }
+        .year-label { font-weight: 800; color: #999; min-width: 60px; font-size: 1.1rem; padding-top: 5px; }
+        .event-list { flex: 1; }
+        .event-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
+        .event-title { font-weight: 600; color: #222; display: block; }
+        .event-details { font-size: 0.9rem; color: #555; display: block; margin-top: 4px; }
+        .highlight-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: #fff3cd; color: #856404; margin-left: 10px; }
+
+        /* Chamfer Box for Major Achievements (Powerhouse/CSIRO) */
+        .feature-box {
+            background: #f9f9f9; border-left: 4px solid var(--primary); padding: 15px; margin-top: 10px;
+            clip-path: polygon(0 0, 97% 0, 100% 15%, 100% 100%, 0 100%);
+            font-size: 0.9rem; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) { body { flex-direction: column; } #sidebar { width: 100%; height: auto; } main { padding: 30px; } }
+    </style>
+</head>
+<body>
+
+<aside id="sidebar">
+    <img src="your-photo.jpg" alt="Kumar Biswajit Debnath" class="profile-pic">
+    <nav class="nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="publications.html" class="nav-item">Publications</a>
+        <a href="outreach.html" class="nav-item active">Outreach</a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="scholar-stats-sidebar">
+            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <h1>Outreach & Engagement</h1>
+
+    <section class="outreach-section">
+        <div class="outreach-category"><i class="fa-solid fa-flask-vial"></i> Exhibitions & Demonstrations</div>
+        
+        <div class="year-group">
+            <div class="year-label">2026</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
+                    <span class="event-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
+                    <div class="feature-box">
+                        Composed of Australian Reishi (Ganoderma steyaertanum) and bagasse waste. Selected for its relevance as a carbon-negative, bio-based building material.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="year-group">
+            <div class="year-label">2025</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">CSIRO ON Prime 18 Program: Sydney A cohort (D-Ply Venture)</span>
+                    <span class="event-details">National deep-tech accelerator program (9-week program), Sydney, Australia.</span>
+                </div>
+                <div class="event-item">
+                    <span class="event-title">76th International Astronautical Congress (IAC) Technical Tour</span>
+                    <span class="event-details">"Growing satellites and space habitats." Multi-delegation sessions (UK, Japan, South Korea, France).</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="year-group">
+            <div class="year-label">2024</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">Centre for Contemporary Arts (CCA), Glasgow</span>
+                    <span class="event-details">Mycelium composite (G. lucidum and Sawdust) exhibited in "life-bestowing cadaverous sooot".</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="outreach-section">
+        <div class="outreach-category"><i class="fa-solid fa-microphone-lines"></i> Invited Talks & Keynotes</div>
+        
+        <div class="year-group">
+            <div class="year-label">2026</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">CSIRO ON Deep Tech Mixer 2026</span>
+                    <span class="event-details">Pitching D-Ply at University of Sydney, 25 March 2026.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="year-group">
+            <div class="year-label">2025</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">Xi'an University of Architecture & Technology, China</span>
+                    <span class="event-details">Passive and Low-Carbon Building Systems for Climate Change Adaptation.</span>
+                </div>
+                <div class="event-item">
+                    <span class="event-title">Tongji University & Shanghai University, China</span>
+                    <span class="event-details">"Fungal Futures" and "Living Building Materials" lectures.</span>
+                </div>
+                <div class="event-item">
+                    <span class="event-title">U.S. Department of State (FSI)</span>
+                    <span class="event-details">Multiple seminars on environmental issues in South Asia (Nepal, Sri Lanka, Bangladesh).</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="outreach-section">
+        <div class="outreach-category"><i class="fa-solid fa-users-rectangle"></i> Panel Discussions</div>
+        <div class="year-group">
+            <div class="year-label">2024</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">SXSW Sydney 2024: Wake up at the House!</span>
+                    <span class="event-details">Industry Breakfast: The Future of Architecture and Sustainability. UTS Building 8.</span>
+                </div>
+                <div class="event-item">
+                    <span class="event-title">Loughborough University: Geopolitics of South Asia</span>
+                    <span class="event-details">Panel 1 - Maldives Climate and Maritime Policy.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Kumar Biswajit Debnath | Built with passion for sustainable architecture.</p>
+</footer>
+
+</body>
+</html>
