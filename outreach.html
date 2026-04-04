@@ -105,7 +105,23 @@
             font-size: 0.9rem; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
         }
 
-        @media (max-width: 768px) { body { flex-direction: column; } #sidebar { width: 100%; height: auto; } main { padding: 30px; } }
+        footer {
+            background: #f8f9fa;
+            color: #666;
+            padding: 40px 60px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            #sidebar { flex: none; width: 100%; height: auto; position: relative; padding: 20px; }
+            #sidebar.collapsed { height: 50px; padding: 10px; }
+            main { padding: 30px 20px; }
+        }
 
         /* --- External Profiles Sidebar Styling --- */
         .sidebar-footer {
