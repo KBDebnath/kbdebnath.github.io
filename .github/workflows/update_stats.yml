@@ -1,5 +1,4 @@
 name: Update Academic Metrics
-
 on:
   push:
     paths:
@@ -9,9 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # This ensures the Action can push changes
     env:
-      # This follows the GitHub 2026 guidance you shared
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,5 +29,4 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add publications.html
-          # The --allow-empty flag ensures it doesn't error out if no changes were found
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update HTML metrics from JSON" && git push)
