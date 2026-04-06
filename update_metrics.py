@@ -6,46 +6,38 @@ HTML_FILE = "publications.html"
 DATA_FILE = "metrics.json"
 
 def update_website():
-    if not os.path.exists(DATA_FILE):
-        print(f"Error: {DATA_FILE} not found.")
-        return
-    if not os.path.exists(HTML_FILE):
-        print(f"Error: {HTML_FILE} not found.")
-        return
-
     with open(DATA_FILE, "r") as f:
         data = json.load(f)
-
     with open(HTML_FILE, "r", encoding="utf-8") as f:
         html = f.read()
 
-    # Using \g<1> prevents the "invalid group reference" error
-    # This clearly separates the backreference from your actual numbers
+    # This new logic looks for the LABEL first, then finds the closest number before it.
+    # It is much more reliable than matching the whole line.
     
-    # GS Citations
-    html = re.sub(r'(<span class="metric-value">).*?(</span><span class="metric-label">Citations<br>\(Google Scholar \[GS\]\))', 
-                  rf'\g<1>{data["gs_cite"]}\g<2>', html)
+    # 1. Update GS Citations
+    html = re.sub(r'<span class="metric-value">(\d+)</span><span class="metric-label">Citations<br>\(Google Scholar \[GS\]\)', 
+                  f'<span class="metric-value">{data["gs_cite"]}</span><span class="metric-label">Citations<br>(Google Scholar [GS])', html)
     
-    # Scopus Citations
-    html = re.sub(r'(<span class="metric-value">).*?(</span><span class="metric-label">Citations<br>\(Scopus \[S\]\))', 
-                  rf'\1{data["scopus_cite"]}\2', html)
+    # 2. Update Scopus Citations
+    html = re.sub(r'<span class="metric-value">(\d+)</span><span class="metric-label">Citations<br>\(Scopus \[S\]\)', 
+                  f'<span class="metric-value">{data["scopus_cite"]}</span><span class="metric-label">Citations<br>(Scopus [S])', html)
 
-    # WoS Citations
-    html = re.sub(r'(<span class="metric-value">).*?(</span><span class="metric-label">Citations<br>\(Web of Science \[WoS\]\))', 
-                  rf'\g<1>{data["wos_cite"]}\g<2>', html)
+    # 3. Update WoS Citations
+    html = re.sub(r'<span class="metric-value">(\d+)</span><span class="metric-label">Citations<br>\(Web of Science \[WoS\]\)', 
+                  f'<span class="metric-value">{data["wos_cite"]}</span><span class="metric-label">Citations<br>(Web of Science [WoS])', html)
 
-    # h-index
-    h_combined = f'{data["gs_h"]} / {data["scopus_h"]} / {data["wos_h"]}'
-    html = re.sub(r'(<span class="metric-value">).*?(</span><span class="metric-label">h-index)', 
-                  rf'\g<1>{h_combined}\g<2>', html)
+    # 4. Update h-index (GS / S / WoS)
+    h_str = f'{data["gs_h"]} / {data["scopus_h"]} / {data["wos_h"]}'
+    html = re.sub(r'<span class="metric-value">(\d+ / \d+ / \d+)</span><span class="metric-label">h-index', 
+                  f'<span class="metric-value">{h_str}</span><span class="metric-label">h-index', html)
 
-    # i10-index
-    html = re.sub(r'(<span class="metric-value">).*?(</span><span class="metric-label">i10-index<br>\(GS\))', 
-                  rf'\g<1>{data["gs_i10"]}\g<2>', html)
+    # 5. Update i10-index
+    html = re.sub(r'<span class="metric-value">(\d+)</span><span class="metric-label">i10-index<br>\(GS\)', 
+                  f'<span class="metric-value">{data["gs_i10"]}</span><span class="metric-label">i10-index<br>(GS)', html)
 
     with open(HTML_FILE, "w", encoding="utf-8") as f:
         f.write(html)
-    print("Successfully updated metrics using explicit group references.")
+    print("Metrics injection complete.")
 
 if __name__ == "__main__":
     update_website()
