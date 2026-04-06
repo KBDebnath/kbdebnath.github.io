@@ -3,14 +3,15 @@ name: Update Academic Metrics
 on:
   push:
     paths:
-      - 'metrics.json'  # Trigger only when you change the numbers
-  workflow_dispatch:     # Trigger manually from the "Actions" tab
+      - 'metrics.json'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      # This follows the GitHub 2026 guidance you shared
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,4 +29,5 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add publications.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Sync metrics from JSON" && git push)
+          # The --allow-empty flag ensures it doesn't error out if no changes were found
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update HTML metrics from JSON" && git push)
