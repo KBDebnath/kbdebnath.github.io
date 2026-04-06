@@ -190,6 +190,34 @@
         .pub-authors { display: block; font-size: 0.95rem; margin: 5px 0; }
         .pub-journal { font-style: italic; color: #555; font-size: 0.95rem; }
         .doi { font-size: 0.85rem; color: #005a9c; text-decoration: none; display: block; margin-top: 5px; }
+
+        /* 1. Reset the counter for each tab's list */
+.pub-list {
+    counter-reset: pub-counter;
+}
+
+/* 2. Increment and display the counter for each item */
+.pub-item {
+    counter-increment: pub-counter;
+    padding-left: 45px; /* Make space for the number */
+}
+
+.pub-item::before {
+    content: counter(pub-counter) "."; /* Display the number followed by a dot */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #ccc; /* Subtle gray color for the number */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Optional: Change number color when the tab is active/hovered */
+.pub-item:hover::before {
+    color: var(--primary);
+    transition: color 0.3s ease;
+}
         
         /* --- Restored Metric Colors --- */
         .pub-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
