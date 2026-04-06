@@ -3,18 +3,18 @@ name: Update Academic Metrics
 on:
   push:
     paths:
-      - 'metrics.json'   # Runs automatically when you update the numbers
-  workflow_dispatch:      # Allows you to run it manually
+      - 'metrics.json'   # This triggers the update only when you change your numbers
+  workflow_dispatch:      # Allows you to click "Run" manually for testing
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4      # Fixed warning (v4)
+        uses: actions/checkout@v4      # Fixed warning
 
       - name: Set up Python
-        uses: actions/setup-python@v5  # Fixed warning (v5)
+        uses: actions/setup-python@v5  # Fixed warning
         with:
           python-version: '3.11'
 
@@ -26,4 +26,4 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add publications.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Sync HTML with metrics.json" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update HTML metrics from JSON" && git push)
