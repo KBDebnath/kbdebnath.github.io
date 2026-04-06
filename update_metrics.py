@@ -1,53 +1,45 @@
 import re
-from scholarly import scholarly, ProxyGenerator
+import json
 
 # --- SETTINGS ---
-FILE_PATH = "publications.html"
-GS_ID = "fr35XxAAAAAJ" 
+HTML_FILE = "publications.html"
+DATA_FILE = "metrics.json"
 
-def get_stats():
-    # Setup a 'Navigator' with a real-looking User-Agent
-    pg = ProxyGenerator()
-    # We aren't using a real proxy (those cost money), 
-    # but we are telling scholarly to use a specific browser header.
-    scholarly.use_proxy(None) 
-    
-    try:
-        # Search for the author ID directly
-        author = scholarly.search_author_id(GS_ID)
-        # We only need the 'indices' and 'basics' to get counts/h-index
-        scholarly.fill(author, sections=['basics', 'indices'])
-        
-        return {
-            "gs_cite": author.get('citedby', 0),
-            "gs_h": author.get('hindex', 0),
-            "gs_i10": author.get('i10index', 0)
-        }
-    except Exception as e:
-        print(f"Google Scholar is still blocking the request: {e}")
-        # If it fails, we exit gracefully so the whole build doesn't go red
-        import sys
-        sys.exit(0)
+def update_website():
+    # 1. Read the numbers from your JSON file
+    with open(DATA_FILE, "r") as f:
+        data = json.load(f)
 
-def update_html(stats):
-    with open(FILE_PATH, "r", encoding="utf-8") as f:
+    # 2. Read your HTML file
+    with open(HTML_FILE, "r", encoding="utf-8") as f:
         html = f.read()
 
-    # Update GS Citations
+    # 3. Use Regex to swap the numbers in the HTML
+    # Update Citations GS
     html = re.sub(r'(<span class="metric-value">)\d+(</span><span class="metric-label">Citations<br>\(Google Scholar \[GS\]\))', 
-                  rf'\1{stats["gs_cite"]}\2', html)
+                  rf'\1{data["gs_cite"]}\2', html)
     
+    # Update Citations Scopus
+    html = re.sub(r'(<span class="metric-value">)\d+(</span><span class="metric-label">Citations<br>\(Scopus \[S\]\))', 
+                  rf'\1{data["scopus_cite"]}\2', html)
+
+    # Update Citations WoS
+    html = re.sub(r'(<span class="metric-value">)\d+(</span><span class="metric-label">Citations<br>\(Web of Science \[WoS\]\))', 
+                  rf'\1{data["wos_cite"]}\2', html)
+
+    # Update h-index (GS / S / WoS)
+    new_h_string = f'{data["gs_h"]} / {data["scopus_h"]} / {data["wos_h"]}'
+    html = re.sub(r'(<span class="metric-value">)\d+ / \d+ / \d+(</span><span class="metric-label">h-index)', 
+                  rf'\1{new_h_string}\2', html)
+
     # Update i10-index
     html = re.sub(r'(<span class="metric-value">)\d+(</span><span class="metric-label">i10-index<br>\(GS\))', 
-                  rf'\1{stats["gs_i10"]}\2', html)
-    
-    # Update h-index (Updates the first number in the GS/S/WoS string)
-    html = re.sub(r'(<span class="metric-value">)\d+( / \d+ / \d+</span><span class="metric-label">h-index)', 
-                  rf'\1{stats["gs_h"]}\2', html)
+                  rf'\1{data["gs_i10"]}\2', html)
 
-    with open(FILE_PATH, "w", encoding="utf-8") as f:
+    # 4. Save the updated HTML
+    with open(HTML_FILE, "w", encoding="utf-8") as f:
         f.write(html)
+    print("Success: publications.html updated with latest metrics.")
 
 if __name__ == "__main__":
-    data = get_stats()
-    update_html(data)
+    update_website()
