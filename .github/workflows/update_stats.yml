@@ -3,18 +3,20 @@ name: Update Academic Metrics
 on:
   push:
     paths:
-      - 'metrics.json'   # This triggers the update only when you change your numbers
-  workflow_dispatch:      # Allows you to click "Run" manually for testing
+      - 'metrics.json'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true  # This stops the deprecation warnings
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4      # Fixed warning
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5  # Fixed warning
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
