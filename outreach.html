@@ -12,19 +12,17 @@
             --primary: #005a9c; 
             --text: #333; 
             --bg: #ffffff; 
-            /* Outreach Tab Colors matching Publication Logic */
-            --color-exhibit: #005a9c;  /* Journals Blue */
-            --color-talks: #8e44ad;    /* Books Purple */
-            --color-panels: #27ae60;   /* Conf Green */
+            --color-exhibit: #005a9c;
+            --color-talks: #8e44ad;
+            --color-panels: #27ae60;
         }
         
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
 
-        /* --- SIDEBAR (Matched to Publication Page) --- */
+        /* --- SIDEBAR --- */
         #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; transition: all 0.3s ease; overflow-x: hidden; box-sizing: border-box; z-index: 1000; display: flex; flex-direction: column; }
         #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
         #sidebar.collapsed .profile-pic, #sidebar.collapsed h1, #sidebar.collapsed p, #sidebar.collapsed .nav-links, #sidebar.collapsed .sidebar-footer { display: none; }
-
         #menu-toggle { position: absolute; top: 10px; right: 10px; background: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; z-index: 1001; }
         .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
@@ -32,7 +30,6 @@
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
         .active-page { background: #eef2f6; color: var(--primary); font-weight: bold; }
 
-        /* --- External Profiles Sidebar --- */
         .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
         .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; justify-content: flex-start; }
         .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: all 0.2s ease; text-decoration: none; }
@@ -42,28 +39,17 @@
         main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 30px; }
 
-        /* --- MULTI-COLOR TAB SYSTEM (Matched to Publication Page) --- */
+        /* --- TABS SYSTEM --- */
         .tabs-container { margin-top: 30px; width: 100%; }
         input[name="outreach-tabs"] { display: none; }
-
         .tab-headers { display: flex; gap: 5px; margin-bottom: -1px; position: relative; z-index: 2; flex-wrap: wrap; }
-        .tab-label { 
-            padding: 12px 20px; cursor: pointer; font-weight: 700; font-size: 0.75rem; 
-            text-transform: uppercase; color: #666; border-radius: 8px 8px 0 0; 
-            transition: all 0.3s ease; border: 1px solid #ddd; background: #f8f9fa;
-        }
+        .tab-label { padding: 12px 20px; cursor: pointer; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: #666; border-radius: 8px 8px 0 0; transition: all 0.3s ease; border: 1px solid #ddd; background: #f8f9fa; }
 
-        /* Tab Logic */
         #tab-exhibit:checked ~ .tab-headers label[for="tab-exhibit"] { background: white; color: var(--color-exhibit); border-top: 3px solid var(--color-exhibit); border-bottom-color: white; }
         #tab-talks:checked ~ .tab-headers label[for="tab-talks"] { background: white; color: var(--color-talks); border-top: 3px solid var(--color-talks); border-bottom-color: white; }
         #tab-panels:checked ~ .tab-headers label[for="tab-panels"] { background: white; color: var(--color-panels); border-top: 3px solid var(--color-panels); border-bottom-color: white; }
 
-        .tab-content-wrapper { 
-            border: 1px solid #ddd; padding: 40px 30px; border-radius: 0 8px 8px 8px; 
-            background: #fff; min-height: 400px;
-        }
-
-        /* Tints matching Pub page */
+        .tab-content-wrapper { border: 1px solid #ddd; padding: 40px 30px; border-radius: 0 8px 8px 8px; background: #fff; min-height: 400px; }
         #tab-talks:checked ~ .tab-content-wrapper { background-color: #faf7ff; }
         #tab-panels:checked ~ .tab-content-wrapper { background-color: #f7fffb; }
 
@@ -72,22 +58,14 @@
         #tab-talks:checked ~ .tab-content-wrapper #content-talks,
         #tab-panels:checked ~ .tab-content-wrapper #content-panels { display: block; }
 
-        /* --- OUTREACH ITEM STYLING --- */
-        .outreach-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; position: relative; padding-left: 45px; }
-        .outreach-item::before {
-            content: "\f061"; font-family: "Font Awesome 6 Free"; font-weight: 900;
-            position: absolute; left: 0; top: 0; font-size: 1.1rem; color: #ccc;
-        }
+        /* --- YEAR-BASED LIST STYLING --- */
+        .outreach-item { display: flex; gap: 25px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .item-year { font-weight: 800; color: #ccc; font-size: 1.2rem; min-width: 60px; padding-top: 2px; }
+        .item-body { flex: 1; }
         .item-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
         .item-details { display: block; font-size: 0.95rem; color: #555; margin-top: 5px; }
 
-        /* Chamfer Box for Major Highlights */
-        .Highlight-box {
-            margin-top: 15px; padding: 12px 18px; background: #fdfdfd;
-            border-left: 4px solid var(--primary); border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
-            font-size: 0.85rem; position: relative;
-            clip-path: polygon(0 0, 96% 0, 100% 20%, 100% 100%, 0 100%);
-        }
+        .Highlight-box { margin-top: 15px; padding: 12px 18px; background: #fdfdfd; border-left: 4px solid var(--primary); border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 0.85rem; position: relative; clip-path: polygon(0 0, 96% 0, 100% 20%, 100% 100%, 0 100%); }
         .Highlight-box strong { color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; display: block; margin-bottom: 3px; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -98,6 +76,7 @@
             body { flex-direction: column; }
             #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
             main { padding: 30px 20px; }
+            .outreach-item { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
@@ -148,38 +127,56 @@
         <div class="tab-content-wrapper">
             <section id="content-exhibit" class="tab-panel">
                 <div class="outreach-item">
-                    <span class="item-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
-                    <span class="item-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
-                    <div class="Highlight-box">
-                        <strong>Impact Highlight</strong>
-                        Selected for inclusion in the museum’s 100-year time capsule to represent the future of sustainable architecture and bio-intelligent building systems.
+                    <div class="item-year">2026</div>
+                    <div class="item-body">
+                        <span class="item-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
+                        <span class="item-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
+                        <div class="Highlight-box">
+                            <strong>Impact Highlight</strong>
+                            Selected for its long-term significance in bio-intelligent building systems.
+                        </div>
                     </div>
                 </div>
                 <div class="outreach-item">
-                    <span class="item-title">CSIRO ON Prime 18 Program</span>
-                    <span class="item-details">Sydney A cohort, 2025. National deep-tech accelerator program focusing on translating bio-fabrication research into industrial applications.</span>
+                    <div class="item-year">2025</div>
+                    <div class="item-body">
+                        <span class="item-title">CSIRO ON Prime 18 Program</span>
+                        <span class="item-details">Sydney A cohort. National deep-tech accelerator program.</span>
+                    </div>
                 </div>
             </section>
 
             <section id="content-talks" class="tab-panel">
                 <div class="outreach-item">
-                    <span class="item-title">CSIRO ON Deep Tech Mixer 2026</span>
-                    <span class="item-details">University of Sydney, Australia. 25 March 2026. Pitching Mycelium-based building technologies to industry leaders.</span>
+                    <div class="item-year">2026</div>
+                    <div class="item-body">
+                        <span class="item-title">CSIRO ON Deep Tech Mixer</span>
+                        <span class="item-details">University of Sydney, Australia. 25 March 2026.</span>
+                    </div>
                 </div>
                 <div class="outreach-item">
-                    <span class="item-title">Climate-Adaptive Bio-Façades in Urban Context</span>
-                    <span class="item-details">Guest Lecture: Xi'an University of Architecture & Technology, China, 2025.</span>
+                    <div class="item-year">2025</div>
+                    <div class="item-body">
+                        <span class="item-title">Xi'an University of Architecture & Technology, China</span>
+                        <span class="item-details">Guest Lecture: Climate-Adaptive Bio-Façades in Urban Context.</span>
+                    </div>
                 </div>
             </section>
 
             <section id="content-panels" class="tab-panel">
                 <div class="outreach-item">
-                    <span class="item-title">Subterranean Worlds: All That Is Alive</span>
-                    <span class="item-details">Symposium Panelist. Sydney, September 2025. Discussing the intersection of mycology and circular construction.</span>
+                    <div class="item-year">2025</div>
+                    <div class="item-body">
+                        <span class="item-title">Subterranean Worlds: All That Is Alive</span>
+                        <span class="item-details">Symposium Panelist. Sydney, September 2025.</span>
+                    </div>
                 </div>
                 <div class="outreach-item">
-                    <span class="item-title">Climate Crisis in Bangladesh: Sea Level Rise</span>
-                    <span class="item-details">South Asia Center, Atlantic Council, May 2022. Expert panel on climate adaptation in the Global South.</span>
+                    <div class="item-year">2022</div>
+                    <div class="item-body">
+                        <span class="item-title">Climate Crisis in Bangladesh: Sea Level Rise</span>
+                        <span class="item-details">South Asia Center, Atlantic Council, May 2022.</span>
+                    </div>
                 </div>
             </section>
         </div>
