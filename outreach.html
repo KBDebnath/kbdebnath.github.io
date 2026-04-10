@@ -25,21 +25,31 @@
         #sidebar.collapsed .profile-pic, #sidebar.collapsed h1, #sidebar.collapsed p, #sidebar.collapsed .nav-links, #sidebar.collapsed .sidebar-footer { display: none; }
         #menu-toggle { position: absolute; top: 10px; right: 10px; background: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; z-index: 1001; }
         .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        /* --- NAVIGATION & DROPDOWN --- */
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
         .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
-        .active-page { background: #eef2f6; color: var(--primary); font-weight: bold; }
+        .active-page { background: #eef2f6 !important; color: var(--primary) !important; font-weight: bold !important; }
 
+        /* Dropdown Logic */
+        .nav-group { position: relative; }
+        .sub-menu { display: none; background: #f1f3f5; margin: 2px 0 10px 10px; border-radius: 6px; border-left: 3px solid #ddd; }
+        .nav-group:hover .sub-menu { display: block; }
+        .sub-item { display: block; padding: 8px 15px; color: #666; font-size: 0.85rem; text-decoration: none; transition: 0.2s; }
+        .sub-item:hover { color: var(--primary); background: #e9ecef; }
+        .parent-link::after { content: ' '; float: right; }
+
+        /* --- SIDEBAR FOOTER --- */
         .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
         .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; justify-content: flex-start; }
         .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: all 0.2s ease; text-decoration: none; }
         .scholar-stats-sidebar a:hover { color: var(--primary); transform: translateY(-2px); }
 
-        /* --- MAIN CONTENT --- */
+        /* --- MAIN CONTENT & TABS --- */
         main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
         h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 30px; }
 
-        /* --- TABS SYSTEM --- */
         .tabs-container { margin-top: 30px; width: 100%; }
         input[name="outreach-tabs"] { display: none; }
         .tab-headers { display: flex; gap: 5px; margin-bottom: -1px; position: relative; z-index: 2; flex-wrap: wrap; }
@@ -50,9 +60,6 @@
         #tab-panels:checked ~ .tab-headers label[for="tab-panels"] { background: white; color: var(--color-panels); border-top: 3px solid var(--color-panels); border-bottom-color: white; }
 
         .tab-content-wrapper { border: 1px solid #ddd; padding: 40px 30px; border-radius: 0 8px 8px 8px; background: #fff; min-height: 400px; }
-        #tab-talks:checked ~ .tab-content-wrapper { background-color: #faf7ff; }
-        #tab-panels:checked ~ .tab-content-wrapper { background-color: #f7fffb; }
-
         .tab-panel { display: none; animation: fadeIn 0.5s ease; }
         #tab-exhibit:checked ~ .tab-content-wrapper #content-exhibit,
         #tab-talks:checked ~ .tab-content-wrapper #content-talks,
@@ -64,9 +71,6 @@
         .item-body { flex: 1; }
         .item-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
         .item-details { display: block; font-size: 0.95rem; color: #555; margin-top: 5px; }
-
-        .Highlight-box { margin-top: 15px; padding: 12px 18px; background: #fdfdfd; border-left: 4px solid var(--primary); border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 0.85rem; position: relative; clip-path: polygon(0 0, 96% 0, 100% 20%, 100% 100%, 0 100%); }
-        .Highlight-box strong { color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; display: block; margin-bottom: 3px; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -89,7 +93,7 @@
         <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
         <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">Chancellor's Research Fellow<br>University of Technology Sydney</p>
         
-         <nav class="nav-links">
+        <nav class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
             <a href="education.html" class="nav-item">Education & Qualifications</a>
             <div class="nav-group">
@@ -102,8 +106,8 @@
                 </div>
             </div>
             <a href="fundings.html" class="nav-item">Funding & Awards</a>
-            <a href="publications.html" class="nav-item" style="background: #eef2f6; color: var(--primary); font-weight: bold;">Publications & Impact</a>
-            <a href="outreach.html" class="nav-item">Outreach</a>
+            <a href="publications.html" class="nav-item">Publications & Impact</a>
+            <a href="outreach.html" class="nav-item active-page">Outreach</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
     </div>
