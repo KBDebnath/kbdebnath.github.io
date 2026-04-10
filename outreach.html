@@ -8,197 +8,148 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
     <style>
-        :root { --primary: #005a9c; --text: #333; --bg: #ffffff; }
+        :root { --primary: #005a9c; --secondary: #6c757d; --text: #333; --bg: #ffffff; --light-bg: #f8f9fa; }
         
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: row; 
-            line-height: 1.6; 
-            color: var(--text); 
-            min-height: 100vh;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
 
-        /* --- SIDEBAR BASE STYLES --- */
-        #sidebar { 
-            flex: 0 0 280px; 
-            background: #f8f9fa; 
-            padding: 40px 20px; 
-            border-right: 1px solid #eee; 
-            position: sticky; 
-            top: 0; 
-            height: 100vh; 
-            transition: all 0.3s ease;
-            overflow-x: hidden;
-            box-sizing: border-box;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-        }
+        /* --- SIDEBAR (Persistent) --- */
+        #sidebar { flex: 0 0 280px; background: var(--light-bg); padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; box-sizing: border-box; }
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; display: block; transition: 0.2s; }
+        .nav-item:hover, .nav-item.active-page { background: #eef2f6; color: var(--primary); }
 
-        #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
-        #sidebar.collapsed .profile-pic, #sidebar.collapsed h1, #sidebar.collapsed p, #sidebar.collapsed .nav-links, #sidebar.collapsed .sidebar-footer { display: none; }
-
-        #menu-toggle {
-            position: absolute; top: 10px; right: 10px;
-            background: var(--primary); color: white; border: none;
-            border-radius: 4px; padding: 5px 10px; cursor: pointer; z-index: 1001;
-        }
-
-        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
-        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
-        .nav-item:hover { background: #eef2f6; color: var(--primary); }
-
-        /* --- TAB SYSTEM STYLES --- */
-        .tab-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 10px 20px;
-            border: none;
-            background: #f1f1f1;
-            cursor: pointer;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: 0.3s;
-            color: #666;
-        }
-
-        .tab-button.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Main Content */
+        /* --- MAIN CONTENT --- */
         main { flex: 1; padding: 60px; background: var(--bg); }
         h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
 
-        /* Outreach Item Styling */
-        .outreach-category { font-size: 1.4rem; color: var(--primary); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-        .year-group { display: flex; gap: 30px; margin-bottom: 25px; position: relative; }
-        .year-label { font-weight: 800; color: #999; min-width: 60px; font-size: 1.1rem; padding-top: 5px; }
-        .event-list { flex: 1; }
-        .event-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
-        .event-title { font-weight: 600; color: #222; display: block; }
-        .event-details { font-size: 0.9rem; color: #555; display: block; margin-top: 4px; }
-
-        .feature-box {
-            background: #f9f9f9; border-left: 4px solid var(--primary); padding: 15px; margin-top: 10px;
-            clip-path: polygon(0 0, 97% 0, 100% 15%, 100% 100%, 0 100%);
-            font-size: 0.9rem; border: 1px solid #eee; border-left: 4px solid var(--primary);
+        /* --- PUBLICATION-STYLE TAB NAVIGATION --- */
+        .tabs-nav {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0;
         }
 
-        footer { background: #f8f9fa; color: #666; padding: 40px 60px; border-top: 1px solid #eee; text-align: center; margin-top: 50px; }
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--secondary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
 
-        /* External Profiles Sidebar */
-        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
-        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
-        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
-        .scholar-stats-sidebar a:hover { color: var(--primary); }
+        .tab-btn:hover { color: var(--primary); }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* --- CONTENT SCALING --- */
+        .tab-panel { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .tab-panel.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- OUTREACH ITEM STYLING --- */
+        .outreach-category { font-size: 1.4rem; color: var(--primary); margin-bottom: 25px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
         
+        .year-group { display: flex; gap: 30px; margin-bottom: 30px; }
+        .year-label { font-weight: 800; color: #bbb; min-width: 65px; font-size: 1.2rem; }
+        .event-list { flex: 1; }
+        .event-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        .event-title { font-weight: 600; color: #222; font-size: 1.05rem; display: block; }
+        .event-details { font-size: 0.95rem; color: #666; display: block; margin-top: 5px; }
+
+        .feature-box {
+            background: #f9f9f9; border-left: 4px solid var(--primary); padding: 15px; margin-top: 12px;
+            clip-path: polygon(0 0, 98% 0, 100% 20%, 100% 100%, 0 100%);
+            font-size: 0.9rem; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+        }
+
+        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.9rem; }
+
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
+            #sidebar { width: 100%; height: auto; position: relative; }
             main { padding: 30px 20px; }
+            .year-group { flex-direction: column; gap: 5px; }
+            .tabs-nav { flex-wrap: wrap; }
         }
     </style>
 </head>
 <body>
 
 <header id="sidebar">
-    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
-    
     <div class="sidebar-top">
         <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
-        <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
-        <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
-            Chancellor's Research Fellow<br>
-            University of Technology Sydney
-        </p>
+        <h1 style="font-size: 1.4rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+        <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">Chancellor's Research Fellow<br>UTS, Sydney</p>
         
         <nav class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
-            <a href="education.html" class="nav-item">Education & Qualifications</a>
-            <a href="fundings.html" class="nav-item">Funding & Awards</a>
             <a href="publications.html" class="nav-item">Publications & Impact</a>
-            <a href="outreach.html" class="nav-item" style="background: #eef2f6; color: var(--primary);">Outreach</a>
+            <a href="outreach.html" class="nav-item active-page">Outreach</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
-    </div>
-
-    <div class="sidebar-footer">
-        <div class="scholar-stats-sidebar">
-            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS Profile"><i class="fa-solid fa-graduation-cap"></i></a>
-            <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-            <a href="https://www.scopus.com/authid/detail.uri?authorId=55845704000" target="_blank" title="Scopus"><i class="fa-solid fa-book-bookmark"></i></a>
-            <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.researchgate.net/profile/Kumar-Biswajit-Debnath" target="_blank" title="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
-        </div>
     </div>
 </header>
 
 <main>
-    <h1>Outreach & Engagement</h1>
+    <h1>Outreach & Public Engagement</h1>
 
-    <div class="tab-container">
-        <button class="tab-button active" onclick="openTab(event, 'exhibitions')">Exhibitions</button>
-        <button class="tab-button" onclick="openTab(event, 'talks')">Invited Talks</button>
-        <button class="tab-button" onclick="openTab(event, 'panels')">Panel Discussions</button>
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(event, 'exhibitions')">Exhibitions</button>
+        <button class="tab-btn" onclick="switchTab(event, 'talks')">Talks & Keynotes</button>
+        <button class="tab-btn" onclick="switchTab(event, 'panels')">Panel Discussions</button>
     </div>
 
-    <div id="exhibitions" class="tab-content active">
-        <div class="outreach-category"><i class="fa-solid fa-flask-vial"></i> Exhibitions & Demonstrations</div>
+    <div id="exhibitions" class="tab-panel active">
+        <div class="outreach-category"><i class="fa-solid fa-flask-vial"></i> Curations & Demonstrations</div>
         
+        <div class="year-group">
+            <div class="year-label">2026</div>
+            <div class="event-list">
+                <div class="event-item">
+                    <span class="event-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
+                    <span class="event-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
+                    <div class="feature-box">
+                        Selected for its relevance as a carbon-negative, bio-based building material. Composed of Australian Reishi (Ganoderma steyaertanum) and bagasse waste.
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="year-group">
             <div class="year-label">2025</div>
             <div class="event-list">
                 <div class="event-item">
-                    <span class="event-title">CSIRO ON Prime 18 Program: Sydney A cohort (D-Ply Venture)</span>
-                    <span class="event-details">National deep-tech accelerator program, Sydney, Australia.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">76th International Astronautical Congress (IAC) Technical Tour</span>
-                    <span class="event-details">"Growing satellites and space habitats." Multi-delegation sessions.</span>
+                    <span class="event-title">CSIRO ON Prime 18 Program: Sydney A cohort</span>
+                    <span class="event-details">National deep-tech accelerator program (9-week program), Sydney, Australia.</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="year-group">
-            <div class="year-label">2024</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Centre for Contemporary Arts (CCA), Glasgow</span>
-                    <span class="event-details">Mycelium composite exhibited in "life-bestowing cadaverous sooot".</span>
-                </div>
-            </div>
-        </div>
-        </div>
-
-    <div id="talks" class="tab-content">
-        <div class="outreach-category"><i class="fa-solid fa-microphone-lines"></i> Invited Talks & Keynotes</div>
+    <div id="talks" class="tab-panel">
+        <div class="outreach-category"><i class="fa-solid fa-microphone-lines"></i> Selected Invited Talks</div>
         
         <div class="year-group">
             <div class="year-label">2026</div>
@@ -215,35 +166,31 @@
             <div class="event-list">
                 <div class="event-item">
                     <span class="event-title">Xi'an University of Architecture & Technology, China</span>
-                    <span class="event-details">Passive and Low-Carbon Building Systems for Climate Change Adaptation.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">Tongji University & Shanghai University, China</span>
-                    <span class="event-details">"Fungal Futures" and "Living Building Materials" lectures.</span>
+                    <span class="event-details">Keynote: Passive and Low-Carbon Building Systems for Climate Change Adaptation.</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="panels" class="tab-content">
-        <div class="outreach-category"><i class="fa-solid fa-users-rectangle"></i> Panel Discussions</div>
+    <div id="panels" class="tab-panel">
+        <div class="outreach-category"><i class="fa-solid fa-users-rectangle"></i> Expert Panel Sessions</div>
 
         <div class="year-group">
             <div class="year-label">2025</div>
             <div class="event-list">
                 <div class="event-item">
-                    <span class="event-title">Session 1: Subterranean Worlds.</span>
+                    <span class="event-title">Session 1: Subterranean Worlds</span>
                     <span class="event-details">‘All That Is Alive’ symposium and exhibition. 16-18 September 2025.</span>
                 </div>
             </div>
         </div>
         
         <div class="year-group">
-            <div class="year-label">2024</div>
+            <div class="year-label">2022</div>
             <div class="event-list">
                 <div class="event-item">
-                    <span class="event-title">SXSW Sydney 2024: Wake up at the House!</span>
-                    <span class="event-details">Industry Breakfast: The Future of Architecture and Sustainability.</span>
+                    <span class="event-title">Rising sea levels and the climate crisis in Bangladesh</span>
+                    <span class="event-details">South Asia Center, Atlantic Council. 12 May 2022.</span>
                 </div>
             </div>
         </div>
@@ -255,29 +202,18 @@
 </main>
 
 <script>
-    // Tab Logic
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab-button");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-        document.getElementById(tabName).style.display = "block";
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
-    }
+    function switchTab(evt, tabId) {
+        // Hide all panels
+        const panels = document.querySelectorAll('.tab-panel');
+        panels.forEach(p => p.classList.remove('active'));
 
-    // Sidebar Toggle
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('collapsed');
-        const btn = document.getElementById('menu-toggle');
-        btn.innerHTML = sidebar.classList.contains('collapsed') ? "❯" : "☰";
+        // Deactivate all buttons
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+
+        // Show selected
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
     }
 
     document.getElementById("year").textContent = new Date().getFullYear();
