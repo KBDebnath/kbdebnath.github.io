@@ -3,95 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outreach | Dr. Kumar Biswajit Debnath</title>
+    <title>Outreach | Kumar Biswajit Debnath</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
     <style>
-        :root { --primary: #005a9c; --secondary: #6c757d; --text: #333; --bg: #ffffff; --light-bg: #f8f9fa; }
+        :root { 
+            --primary: #005a9c; 
+            --text: #333; 
+            --bg: #ffffff; 
+            /* Outreach Tab Colors matching Publication Logic */
+            --color-exhibit: #005a9c;  /* Journals Blue */
+            --color-talks: #8e44ad;    /* Books Purple */
+            --color-panels: #27ae60;   /* Conf Green */
+        }
         
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
 
-        /* --- SIDEBAR (Persistent) --- */
-        #sidebar { flex: 0 0 280px; background: var(--light-bg); padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; box-sizing: border-box; }
-        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; display: block; transition: 0.2s; }
-        .nav-item:hover, .nav-item.active-page { background: #eef2f6; color: var(--primary); }
+        /* --- SIDEBAR (Matched to Publication Page) --- */
+        #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; transition: all 0.3s ease; overflow-x: hidden; box-sizing: border-box; z-index: 1000; display: flex; flex-direction: column; }
+        #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
+        #sidebar.collapsed .profile-pic, #sidebar.collapsed h1, #sidebar.collapsed p, #sidebar.collapsed .nav-links, #sidebar.collapsed .sidebar-footer { display: none; }
+
+        #menu-toggle { position: absolute; top: 10px; right: 10px; background: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; z-index: 1001; }
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
+        .nav-item:hover { background: #eef2f6; color: var(--primary); }
+        .active-page { background: #eef2f6; color: var(--primary); font-weight: bold; }
+
+        /* --- External Profiles Sidebar --- */
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; justify-content: flex-start; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: all 0.2s ease; text-decoration: none; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); transform: translateY(-2px); }
 
         /* --- MAIN CONTENT --- */
-        main { flex: 1; padding: 60px; background: var(--bg); }
-        h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 30px; }
 
-        /* --- PUBLICATION-STYLE TAB NAVIGATION --- */
-        .tabs-nav {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0;
+        /* --- MULTI-COLOR TAB SYSTEM (Matched to Publication Page) --- */
+        .tabs-container { margin-top: 30px; width: 100%; }
+        input[name="outreach-tabs"] { display: none; }
+
+        .tab-headers { display: flex; gap: 5px; margin-bottom: -1px; position: relative; z-index: 2; flex-wrap: wrap; }
+        .tab-label { 
+            padding: 12px 20px; cursor: pointer; font-weight: 700; font-size: 0.75rem; 
+            text-transform: uppercase; color: #666; border-radius: 8px 8px 0 0; 
+            transition: all 0.3s ease; border: 1px solid #ddd; background: #f8f9fa;
         }
 
-        .tab-btn {
-            padding: 12px 24px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--secondary);
-            position: relative;
-            transition: all 0.3s ease;
+        /* Tab Logic */
+        #tab-exhibit:checked ~ .tab-headers label[for="tab-exhibit"] { background: white; color: var(--color-exhibit); border-top: 3px solid var(--color-exhibit); border-bottom-color: white; }
+        #tab-talks:checked ~ .tab-headers label[for="tab-talks"] { background: white; color: var(--color-talks); border-top: 3px solid var(--color-talks); border-bottom-color: white; }
+        #tab-panels:checked ~ .tab-headers label[for="tab-panels"] { background: white; color: var(--color-panels); border-top: 3px solid var(--color-panels); border-bottom-color: white; }
+
+        .tab-content-wrapper { 
+            border: 1px solid #ddd; padding: 40px 30px; border-radius: 0 8px 8px 8px; 
+            background: #fff; min-height: 400px;
         }
 
-        .tab-btn:hover { color: var(--primary); }
+        /* Tints matching Pub page */
+        #tab-talks:checked ~ .tab-content-wrapper { background-color: #faf7ff; }
+        #tab-panels:checked ~ .tab-content-wrapper { background-color: #f7fffb; }
 
-        .tab-btn.active {
-            color: var(--primary);
-        }
-
-        .tab-btn.active::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        /* --- CONTENT SCALING --- */
-        .tab-panel { display: none; animation: fadeIn 0.5s ease-in-out; }
-        .tab-panel.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .tab-panel { display: none; animation: fadeIn 0.5s ease; }
+        #tab-exhibit:checked ~ .tab-content-wrapper #content-exhibit,
+        #tab-talks:checked ~ .tab-content-wrapper #content-talks,
+        #tab-panels:checked ~ .tab-content-wrapper #content-panels { display: block; }
 
         /* --- OUTREACH ITEM STYLING --- */
-        .outreach-category { font-size: 1.4rem; color: var(--primary); margin-bottom: 25px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
-        
-        .year-group { display: flex; gap: 30px; margin-bottom: 30px; }
-        .year-label { font-weight: 800; color: #bbb; min-width: 65px; font-size: 1.2rem; }
-        .event-list { flex: 1; }
-        .event-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
-        .event-title { font-weight: 600; color: #222; font-size: 1.05rem; display: block; }
-        .event-details { font-size: 0.95rem; color: #666; display: block; margin-top: 5px; }
-
-        .feature-box {
-            background: #f9f9f9; border-left: 4px solid var(--primary); padding: 15px; margin-top: 12px;
-            clip-path: polygon(0 0, 98% 0, 100% 20%, 100% 100%, 0 100%);
-            font-size: 0.9rem; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+        .outreach-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; position: relative; padding-left: 45px; }
+        .outreach-item::before {
+            content: "\f061"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; left: 0; top: 0; font-size: 1.1rem; color: #ccc;
         }
+        .item-title { display: block; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .item-details { display: block; font-size: 0.95rem; color: #555; margin-top: 5px; }
 
-        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 0.9rem; }
+        /* Chamfer Box for Major Highlights */
+        .Highlight-box {
+            margin-top: 15px; padding: 12px 18px; background: #fdfdfd;
+            border-left: 4px solid var(--primary); border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            font-size: 0.85rem; position: relative;
+            clip-path: polygon(0 0, 96% 0, 100% 20%, 100% 100%, 0 100%);
+        }
+        .Highlight-box strong { color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; display: block; margin-bottom: 3px; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        footer { background: #f8f9fa; color: #666; padding: 40px 60px; border-top: 1px solid #eee; text-align: center; width: 100%; box-sizing: border-box; margin-top: 50px; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; }
+            #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
             main { padding: 30px 20px; }
-            .year-group { flex-direction: column; gap: 5px; }
-            .tabs-nav { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -99,30 +105,18 @@
 
 <header id="sidebar">
     <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
-    
     <div class="sidebar-top">
         <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
         <h1 style="font-size: 1.5rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
-        <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">
-            Chancellor's Research Fellow<br>
-            University of Technology Sydney
-        </p>
+        <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">Chancellor's Research Fellow<br>University of Technology Sydney</p>
         
         <nav class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
             <a href="education.html" class="nav-item">Education & Qualifications</a>
-            <div class="nav-group">
-                <a href="employment.html" class="nav-item parent-link" style="background: #eef2f6;">Professional Experience ↓</a>
-                <div class="sub-menu">
-                    <a href="projects.html" class="sub-item">Research</a>
-                    <a href="teaching.html" class="sub-item">Teaching</a>
-                    <a href="supervision.html" class="sub-item">Supervision</a>
-                    <a href="service.html" class="sub-item">Service & Leadership</a>
-                </div>
-            </div>
+            <a href="employment.html" class="nav-item">Professional Experience</a>
             <a href="fundings.html" class="nav-item">Funding & Awards</a>
             <a href="publications.html" class="nav-item">Publications & Impact</a>
-            <a href="outreach.html" class="nav-item">Outreach</a>
+            <a href="outreach.html" class="nav-item active-page">Outreach</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
     </div>
@@ -132,118 +126,74 @@
             <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS Profile"><i class="fa-solid fa-graduation-cap"></i></a>
             <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
             <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-            <a href="https://www.scopus.com/authid/detail.uri?authorId=55845704000" target="_blank" title="Scopus"><i class="fa-solid fa-book-bookmark"></i></a>
             <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.researchgate.net/profile/Kumar-Biswajit-Debnath" target="_blank" title="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
         </div>
     </div>
 </header>
 
 <main>
-    <h1>Outreach & Public Engagement</h1>
+    <h1>Outreach & Engagement</h1>
 
-    <div class="tabs-nav">
-        <button class="tab-btn active" onclick="switchTab(event, 'exhibitions')">Exhibitions</button>
-        <button class="tab-btn" onclick="switchTab(event, 'talks')">Talks & Keynotes</button>
-        <button class="tab-btn" onclick="switchTab(event, 'panels')">Panel Discussions</button>
-    </div>
+    <div class="tabs-container">
+        <input type="radio" name="outreach-tabs" id="tab-exhibit" checked>
+        <input type="radio" name="outreach-tabs" id="tab-talks">
+        <input type="radio" name="outreach-tabs" id="tab-panels">
 
-    <div id="exhibitions" class="tab-panel active">
-        <div class="outreach-category"><i class="fa-solid fa-flask-vial"></i> Curations & Demonstrations</div>
-        
-        <div class="year-group">
-            <div class="year-label">2026</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
-                    <span class="event-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
-                    <div class="feature-box">
-                        Selected for its relevance as a carbon-negative, bio-based building material. Composed of Australian Reishi (Ganoderma steyaertanum) and bagasse waste.
+        <div class="tab-headers">
+            <label for="tab-exhibit" class="tab-label">Exhibitions & Curations</label>
+            <label for="tab-talks" class="tab-label">Invited Talks & Keynotes</label>
+            <label for="tab-panels" class="tab-label">Panel Discussions</label>
+        </div>
+
+        <div class="tab-content-wrapper">
+            <section id="content-exhibit" class="tab-panel">
+                <div class="outreach-item">
+                    <span class="item-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
+                    <span class="item-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
+                    <div class="Highlight-box">
+                        <strong>Impact Highlight</strong>
+                        Selected for inclusion in the museum’s 100-year time capsule to represent the future of sustainable architecture and bio-intelligent building systems.
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="year-group">
-            <div class="year-label">2025</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">CSIRO ON Prime 18 Program: Sydney A cohort</span>
-                    <span class="event-details">National deep-tech accelerator program (9-week program), Sydney, Australia.</span>
+                <div class="outreach-item">
+                    <span class="item-title">CSIRO ON Prime 18 Program</span>
+                    <span class="item-details">Sydney A cohort, 2025. National deep-tech accelerator program focusing on translating bio-fabrication research into industrial applications.</span>
                 </div>
-            </div>
-        </div>
-    </div>
+            </section>
 
-    <div id="talks" class="tab-panel">
-        <div class="outreach-category"><i class="fa-solid fa-microphone-lines"></i> Selected Invited Talks</div>
-        
-        <div class="year-group">
-            <div class="year-label">2026</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">CSIRO ON Deep Tech Mixer 2026</span>
-                    <span class="event-details">ON Innovation Program. University of Sydney, Australia. 25 March 2026.</span>
+            <section id="content-talks" class="tab-panel">
+                <div class="outreach-item">
+                    <span class="item-title">CSIRO ON Deep Tech Mixer 2026</span>
+                    <span class="item-details">University of Sydney, Australia. 25 March 2026. Pitching Mycelium-based building technologies to industry leaders.</span>
                 </div>
-            </div>
-        </div>
+                <div class="outreach-item">
+                    <span class="item-title">Climate-Adaptive Bio-Façades in Urban Context</span>
+                    <span class="item-details">Guest Lecture: Xi'an University of Architecture & Technology, China, 2025.</span>
+                </div>
+            </section>
 
-        <div class="year-group">
-            <div class="year-label">2025</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Xi'an University of Architecture & Technology, China</span>
-                    <span class="event-details">Keynote: Passive and Low-Carbon Building Systems for Climate Change Adaptation.</span>
+            <section id="content-panels" class="tab-panel">
+                <div class="outreach-item">
+                    <span class="item-title">Subterranean Worlds: All That Is Alive</span>
+                    <span class="item-details">Symposium Panelist. Sydney, September 2025. Discussing the intersection of mycology and circular construction.</span>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="panels" class="tab-panel">
-        <div class="outreach-category"><i class="fa-solid fa-users-rectangle"></i> Expert Panel Sessions</div>
-
-        <div class="year-group">
-            <div class="year-label">2025</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Session 1: Subterranean Worlds</span>
-                    <span class="event-details">‘All That Is Alive’ symposium and exhibition. 16-18 September 2025.</span>
+                <div class="outreach-item">
+                    <span class="item-title">Climate Crisis in Bangladesh: Sea Level Rise</span>
+                    <span class="item-details">South Asia Center, Atlantic Council, May 2022. Expert panel on climate adaptation in the Global South.</span>
                 </div>
-            </div>
-        </div>
-        
-        <div class="year-group">
-            <div class="year-label">2022</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Rising sea levels and the climate crisis in Bangladesh</span>
-                    <span class="event-details">South Asia Center, Atlantic Council. 12 May 2022.</span>
-                </div>
-            </div>
+            </section>
         </div>
     </div>
 
     <footer>
-        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+        <p>&copy; 2026 Kumar Biswajit Debnath. All rights reserved.</p>
     </footer>
 </main>
 
 <script>
-    function switchTab(evt, tabId) {
-        // Hide all panels
-        const panels = document.querySelectorAll('.tab-panel');
-        panels.forEach(p => p.classList.remove('active'));
-
-        // Deactivate all buttons
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(b => b.classList.remove('active'));
-
-        // Show selected
-        document.getElementById(tabId).classList.add('active');
-        evt.currentTarget.classList.add('active');
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('collapsed');
     }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
