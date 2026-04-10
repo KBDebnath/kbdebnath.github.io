@@ -37,117 +37,92 @@
             flex-direction: column;
         }
 
-        /* --- COLLAPSED STATE --- */
-        #sidebar.collapsed {
-            flex: 0 0 60px;
-            padding: 40px 10px;
-        }
-
-        /* Hide profile/text when collapsed */
-        #sidebar.collapsed .profile-pic,
-        #sidebar.collapsed h1,
-        #sidebar.collapsed p,
-        #sidebar.collapsed .nav-links,
-        #sidebar.collapsed .sidebar-footer {
-            display: none;
-        }
+        #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
+        #sidebar.collapsed .profile-pic, #sidebar.collapsed h1, #sidebar.collapsed p, #sidebar.collapsed .nav-links, #sidebar.collapsed .sidebar-footer { display: none; }
 
         #menu-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 5px 10px;
-            cursor: pointer;
-            z-index: 1001;
+            position: absolute; top: 10px; right: 10px;
+            background: var(--primary); color: white; border: none;
+            border-radius: 4px; padding: 5px 10px; cursor: pointer; z-index: 1001;
         }
 
-        .profile-pic { 
-            width: 150px; height: 150px; 
-            border-radius: 50%; object-fit: cover; object-position: top; 
-            border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            margin-bottom: 20px; 
-        }
-
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
         .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
 
-        .sub-menu { max-height: 0; overflow: hidden; margin-left: 20px; border-left: 2px solid #dee2e6; padding-left: 10px; transition: max-height 0.3s ease-out; opacity: 0; }
-        .nav-group:hover .sub-menu { max-height: 200px; opacity: 1; margin-bottom: 10px; }
-        .sub-item { display: block; text-decoration: none; color: #666; font-size: 0.9rem; padding: 6px 0; transition: color 0.2s; }
-        .parent-link { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+        /* --- TAB SYSTEM STYLES --- */
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: #f1f1f1;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: 0.3s;
+            color: #666;
+        }
+
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* Main Content */
         main { flex: 1; padding: 60px; background: var(--bg); }
         h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
 
         /* Outreach Item Styling */
-        .outreach-section { margin-bottom: 50px; }
-        .outreach-category { font-size: 1.4rem; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--primary); padding-left: 15px; }
-        
+        .outreach-category { font-size: 1.4rem; color: var(--primary); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
         .year-group { display: flex; gap: 30px; margin-bottom: 25px; position: relative; }
         .year-label { font-weight: 800; color: #999; min-width: 60px; font-size: 1.1rem; padding-top: 5px; }
         .event-list { flex: 1; }
         .event-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
         .event-title { font-weight: 600; color: #222; display: block; }
         .event-details { font-size: 0.9rem; color: #555; display: block; margin-top: 4px; }
-        .highlight-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: #fff3cd; color: #856404; margin-left: 10px; }
 
-        /* Chamfer Box for Major Achievements (Powerhouse/CSIRO) */
         .feature-box {
             background: #f9f9f9; border-left: 4px solid var(--primary); padding: 15px; margin-top: 10px;
             clip-path: polygon(0 0, 97% 0, 100% 15%, 100% 100%, 0 100%);
-            font-size: 0.9rem; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;
+            font-size: 0.9rem; border: 1px solid #eee; border-left: 4px solid var(--primary);
         }
 
-        footer {
-            background: #f8f9fa;
-            color: #666;
-            padding: 40px 60px;
-            border-top: 1px solid #eee;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            margin-top: 50px;
-        }
+        footer { background: #f8f9fa; color: #666; padding: 40px 60px; border-top: 1px solid #eee; text-align: center; margin-top: 50px; }
 
+        /* External Profiles Sidebar */
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: color 0.2s; text-decoration: none; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); }
+        
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar { flex: none; width: 100%; height: auto; position: relative; padding: 20px; }
-            #sidebar.collapsed { height: 50px; padding: 10px; }
+            #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
             main { padding: 30px 20px; }
         }
-
-        /* --- External Profiles Sidebar Styling --- */
-        .sidebar-footer {
-            margin-top: auto; 
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        .scholar-stats-sidebar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 10px 12px;
-        }
-
-        .scholar-stats-sidebar a {
-            color: #666;
-            font-size: 1.2rem;
-            transition: color 0.2s;
-            text-decoration: none;
-        }
-
-        .scholar-stats-sidebar a:hover {
-            color: var(--primary);
-        }
-        
     </style>
 </head>
 <body>
@@ -166,30 +141,19 @@
         <nav class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
             <a href="education.html" class="nav-item">Education & Qualifications</a>
-            <div class="nav-group">
-                <a href="employment.html" class="nav-item parent-link">Professional Experience ↓</a>
-                <div class="sub-menu">
-                    <a href="projects.html" class="sub-item">Research</a>
-                    <a href="teaching.html" class="sub-item">Teaching</a>
-                    <a href="supervision.html" class="sub-item">Supervision</a>
-                    <a href="service.html" class="sub-item">Service & Leadership</a>
-                </div>
-            </div>
             <a href="fundings.html" class="nav-item">Funding & Awards</a>
             <a href="publications.html" class="nav-item">Publications & Impact</a>
-            <a href="outreach.html" class="nav-item">Outreach</a>
+            <a href="outreach.html" class="nav-item" style="background: #eef2f6; color: var(--primary);">Outreach</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
     </div>
 
     <div class="sidebar-footer">
         <div class="scholar-stats-sidebar">
-            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS Profile"><i class="fa-solid fa-graduation-cap"></i></a>
-            <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-            <a href="https://www.scopus.com/authid/detail.uri?authorId=55845704000" target="_blank" title="Scopus"><i class="fa-solid fa-book-bookmark"></i></a>
-            <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.researchgate.net/profile/Kumar-Biswajit-Debnath" target="_blank" title="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://orcid.org/0000-0001-5613-2916" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
         </div>
     </div>
 </header>
@@ -197,34 +161,25 @@
 <main>
     <h1>Outreach & Engagement</h1>
 
-    <section class="outreach-section">
+    <div class="tab-container">
+        <button class="tab-button active" onclick="openTab(event, 'exhibitions')">Exhibitions</button>
+        <button class="tab-button" onclick="openTab(event, 'talks')">Invited Talks</button>
+        <button class="tab-button" onclick="openTab(event, 'panels')">Panel Discussions</button>
+    </div>
+
+    <div id="exhibitions" class="tab-content active">
         <div class="outreach-category"><i class="fa-solid fa-flask-vial"></i> Exhibitions & Demonstrations</div>
-
-        <!---
-        <div class="year-group">
-            <div class="year-label">2026</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Powerhouse Parramatta “100-Year Time Capsule” (2026–2126)</span>
-                    <span class="event-details">Powerhouse Museum, Sydney. Permanent archival of Bio-fabricated Mycelium-Based Composite.</span>
-                    <div class="feature-box">
-                        Composed of Australian Reishi (Ganoderma steyaertanum) and bagasse waste. Selected for its relevance as a carbon-negative, bio-based building material.
-                    </div>
-                </div>
-            </div>
-        </div>
-        --->
-
+        
         <div class="year-group">
             <div class="year-label">2025</div>
             <div class="event-list">
                 <div class="event-item">
                     <span class="event-title">CSIRO ON Prime 18 Program: Sydney A cohort (D-Ply Venture)</span>
-                    <span class="event-details">National deep-tech accelerator program (9-week program), Sydney, Australia.</span>
+                    <span class="event-details">National deep-tech accelerator program, Sydney, Australia.</span>
                 </div>
                 <div class="event-item">
                     <span class="event-title">76th International Astronautical Congress (IAC) Technical Tour</span>
-                    <span class="event-details">"Growing satellites and space habitats." Multi-delegation sessions (UK, Japan, South Korea, France).</span>
+                    <span class="event-details">"Growing satellites and space habitats." Multi-delegation sessions.</span>
                 </div>
             </div>
         </div>
@@ -234,76 +189,13 @@
             <div class="event-list">
                 <div class="event-item">
                     <span class="event-title">Centre for Contemporary Arts (CCA), Glasgow</span>
-                    <span class="event-details">Mycelium composite (G. lucidum and Sawdust) exhibited in "life-bestowing cadaverous sooot".</span>
+                    <span class="event-details">Mycelium composite exhibited in "life-bestowing cadaverous sooot".</span>
                 </div>
             </div>
         </div>
-
-        <div class="year-group">
-            <div class="year-label">2012</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Three-day project exhibition for ‘50 years of Architecture, BUET’</span>
-                    <span class="event-details">02-04 February, Dhaka, Bangladesh.</span>
-                </div>
-            </div>
         </div>
 
-        <div class="year-group">
-            <div class="year-label">2011</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Two-day project exhibition of Level 5, Term 1 projects. </span>
-                    <span class="event-details">BUET, Dhaka, Bangladesh.</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="year-group">
-            <div class="year-label">2010</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Berger Award Exhibition. </span>
-                    <span class="event-details">BUET, Dhaka, Bangladesh.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">Lonely Planet Mosaic </span>
-                    <span class="event-details">Website contest-2010.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">BUET Photography Society exhibition. </span>
-                    <span class="event-details">BUET, Dhaka, Bangladesh.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">RAG-10 Photography exhibition. </span>
-                    <span class="event-details">BUET, Dhaka, Bangladesh.</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="year-group">
-            <div class="year-label">2009</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Three photographs were exhibited at the India-Plural photo exhibition. </span>
-                    <span class="event-details">BUET, Dhaka, Bangladesh.</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="year-group">
-            <div class="year-label">2006</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Three-day project exhibition of Level-1, Term-2 projects. </span>
-                    <span class="event-details">BUET, Dhaka, Bangladesh.</span>
-                </div>
-            </div>
-        </div>
-        
-    </section>
-
-    <section class="outreach-section">
+    <div id="talks" class="tab-content">
         <div class="outreach-category"><i class="fa-solid fa-microphone-lines"></i> Invited Talks & Keynotes</div>
         
         <div class="year-group">
@@ -327,39 +219,11 @@
                     <span class="event-title">Tongji University & Shanghai University, China</span>
                     <span class="event-details">"Fungal Futures" and "Living Building Materials" lectures.</span>
                 </div>
-                <div class="event-item">
-                    <span class="event-title">U.S. Department of State (FSI)</span>
-                    <span class="event-details">Multiple seminars on environmental issues in South Asia (Nepal, Sri Lanka, Bangladesh).</span>
-                </div>
-            </div>            
-        </div>
-
-        <div class="year-group">
-            <div class="year-label">2024</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">CSIRO ON Deep Tech Mixer 2026</span>
-                    <span class="event-details">Pitching D-Ply at University of Sydney, 25 March 2026.</span>
-                </div>
-
-                <div class="event-item">
-                    <span class="event-title">Circularity and Climate Change Resilience in Architecture: An Untapped Potential of Mycelium-based Composites for Australia. </span>
-                    <span class="event-details">South by Southwest (SXSW) Sydney 2024. Session: Wake up at the House! Industry Breakfast: The Future of Architecture and Sustainability; 
-                        UTS Building 8, Chau Chak Wing. 15 October 2024.</span>
-                </div>
-
-                <div class="event-item">
-                    <span class="event-title">Climate change, extreme heat, decarbonisation, and ‘Debt-fossil fuel production trap’: South Asia. </span>
-                    <span class="event-details">Session: Climate change Impacts from lived Experience; Climate Change and Duties to Future Generations: Are Our Obligations Truly of Justice? 
-                        Centre for Climate and Environment Resilience, School of Engineering, Newcastle University, UK. 08 January 2024.</span>
-                </div>
-                
             </div>
         </div>
-        
-    </section>
+    </div>
 
-    <section class="outreach-section">
+    <div id="panels" class="tab-content">
         <div class="outreach-category"><i class="fa-solid fa-users-rectangle"></i> Panel Discussions</div>
 
         <div class="year-group">
@@ -377,60 +241,44 @@
             <div class="event-list">
                 <div class="event-item">
                     <span class="event-title">SXSW Sydney 2024: Wake up at the House!</span>
-                    <span class="event-details">Industry Breakfast: The Future of Architecture and Sustainability. UTS Building 8.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">Loughborough University: Geopolitics of South Asia.</span>
-                    <span class="event-details">Panel 1 - Maldives Climate and Maritime Policy.</span>
-                </div>
-                <div class="event-item">
-                    <span class="event-title">Topical session 1- Climate-just Future, and session 2 – Risk Culture and Moral Imperative.</span>
-                    <span class="event-details">Climate Change and Duties to Future Generations: Are Our Obligations Truly of Justice? Centre for Climate and Environment, 
-                        School of Engineering, Newcastle University, UK. 08 January 2024.</span>
+                    <span class="event-details">Industry Breakfast: The Future of Architecture and Sustainability.</span>
                 </div>
             </div>
         </div>
-
-        <div class="year-group">
-            <div class="year-label">2022</div>
-            <div class="event-list">
-                <div class="event-item">
-                    <span class="event-title">Rising sea levels and the climate crisis in Bangladesh, the Maldives, and Sri Lanka.</span>
-                    <span class="event-details">Panel discussion; South Asia Center, Atlantic Council. 12 May 2022.</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-
-<footer>
-    <div class="footer-content">
-        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
-        <p style="font-size: 0.8rem; opacity: 0.7;">
-            Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
-        </p>
     </div>
-</footer>
 
+    <footer>
+        <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+    </footer>
 </main>
 
 <script>
-    // Set Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Tab Logic
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
 
-    // Toggle Function
+    // Sidebar Toggle
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('collapsed');
-        
         const btn = document.getElementById('menu-toggle');
-        if (sidebar.classList.contains('collapsed')) {
-            btn.innerHTML = "❯";
-        } else {
-            btn.innerHTML = "☰";
-        }
+        btn.innerHTML = sidebar.classList.contains('collapsed') ? "❯" : "☰";
     }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
