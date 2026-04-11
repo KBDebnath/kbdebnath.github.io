@@ -335,13 +335,23 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Kumar Biswajit Debnath. All rights reserved.</p>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Kumar Biswajit Debnath. All rights reserved.</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">
+                Designed & Developed by K. B. Debnath | Hosted on GitHub Pages
+            </p>
+        </div>
     </footer>
 </main>
 
 <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('collapsed');
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('collapsed');
+        const btn = document.getElementById('menu-toggle');
+        btn.innerHTML = sidebar.classList.contains('collapsed') ? "❯" : "☰";
     }
 </script>
 
