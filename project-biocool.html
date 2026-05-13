@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioCOOL Project | Kumar Biswajit Debnath</title>
+    <title>BioCOOL | Kumar Biswajit Debnath</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     
     <style>
         :root { 
@@ -16,118 +17,171 @@
         
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
 
-        /* --- SIDEBAR (Standardized) --- */
-        #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; transition: all 0.3s ease; box-sizing: border-box; display: flex; flex-direction: column; }
-        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        /* --- SIDEBAR (Standardized for all pages) --- */
+        #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; transition: all 0.3s ease; overflow-x: hidden; box-sizing: border-box; z-index: 1000; display: flex; flex-direction: column; }
+        #sidebar.collapsed { flex: 0 0 60px; padding: 40px 10px; }
+        #sidebar.collapsed .profile-pic, #sidebar.collapsed h1, #sidebar.collapsed p, #sidebar.collapsed .nav-links, #sidebar.collapsed .sidebar-footer { display: none; }
+        #menu-toggle { position: absolute; top: 10px; right: 10px; background: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; z-index: 1001; }
+        
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        /* --- NAVIGATION --- */
         .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
-        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: 0.2s; display: block; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
         .nav-item:hover { background: #eef2f6; color: var(--primary); }
         .active-page { background: #eef2f6 !important; color: var(--primary) !important; font-weight: bold !important; }
 
+        .nav-group { position: relative; }
+        .sub-menu { display: none; background: #f1f3f5; margin: 2px 0 10px 10px; border-radius: 6px; border-left: 3px solid #ddd; }
+        .nav-group:hover .sub-menu { display: block; }
+        .sub-item { display: block; padding: 8px 15px; color: #666; font-size: 0.85rem; text-decoration: none; transition: 0.2s; }
+        .sub-item:hover { color: var(--primary); background: #e9ecef; }
+
+        .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #eee; }
+        .scholar-stats-sidebar { display: flex; flex-wrap: wrap; gap: 15px; padding: 10px 12px; justify-content: flex-start; }
+        .scholar-stats-sidebar a { color: #666; font-size: 1.2rem; transition: all 0.2s ease; text-decoration: none; }
+        .scholar-stats-sidebar a:hover { color: var(--primary); transform: translateY(-2px); }
+
         /* --- MAIN CONTENT --- */
-        main { flex: 1; padding: 60px; background: var(--bg); max-width: 900px; }
-        .project-header { margin-bottom: 40px; border-left: 5px solid var(--accent); padding-left: 25px; }
-        .project-header h1 { font-size: 2.8rem; color: var(--primary); margin: 0; }
-        .tagline { font-size: 1.2rem; color: #666; font-style: italic; }
+        main { flex: 1; padding: 60px; background: var(--bg); min-width: 0; transition: all 0.3s ease; }
+        
+        .hero-section { margin-bottom: 40px; }
+        .hero-section h1 { font-size: 2.8rem; color: var(--primary); margin: 0; }
+        .project-meta { font-size: 1.1rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
 
-        /* Concept Diagram Placeholder */
-        .diagram-container { 
-            background: #f9f9f9; 
-            border: 1px dashed #ccc; 
-            border-radius: 12px; 
+        /* --- CONCEPT DIAGRAM AREA --- */
+        .diagram-box { 
+            background: #fdfdfd; 
+            border: 1px solid #eee; 
+            border-radius: 15px; 
             padding: 40px; 
-            text-align: center; 
-            margin: 40px 0;
+            margin: 40px 0; 
+            text-align: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
         }
-        .diagram-placeholder { font-weight: bold; color: var(--primary); }
+        .diagram-label { color: var(--primary); font-weight: bold; margin-bottom: 20px; font-size: 1.2rem; }
+        
+        /* --- CONTENT BLOCKS --- */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .feature-card { padding: 25px; border-radius: 12px; background: #fff; border: 1px solid #f0f0f0; transition: 0.3s; border-top: 4px solid var(--accent); }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .feature-card i { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
+        .feature-card h3 { color: var(--primary); margin-top: 0; }
 
-        /* Feature Grid */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        .card { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); border-top: 3px solid var(--accent); }
-        .card i { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
-        .card h3 { margin-top: 0; color: var(--primary); }
+        .vision-statement { 
+            background: var(--primary); 
+            color: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            margin-top: 50px; 
+            position: relative;
+            overflow: hidden;
+        }
+        .vision-statement h2 { color: white; margin-top: 0; }
 
-        .impact-box { background: var(--primary); color: white; padding: 30px; border-radius: 12px; margin-top: 50px; }
-        .impact-box h2 { margin-top: 0; color: #fff; }
-
-        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; color: #888; text-align: center; }
+        footer { background: #f8f9fa; color: #666; padding: 40px 60px; border-top: 1px solid #eee; text-align: center; margin-top: 50px; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; }
-            .grid { grid-template-columns: 1fr; }
+            #sidebar { width: 100%; height: auto; position: relative; padding: 20px; }
+            main { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
 <header id="sidebar">
+    <button id="menu-toggle" onclick="toggleSidebar()">☰</button>
     <div class="sidebar-top">
         <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
-        <h2 style="font-size: 1.2rem; margin: 0; color: var(--primary);">K. B. Debnath</h2>
+        <h1 style="font-size: 1.2rem; margin: 0; color: var(--primary);">K. B. Debnath</h1>
+        <p style="font-size: 0.8rem; color: #666; margin: 5px 0;">Chancellor's Research Fellow<br>University of Technology Sydney</p>
+        
         <nav class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
-            <a href="projects.html" class="nav-item active-page">Research Projects</a>
-            <a href="publications.html" class="nav-item">Publications</a>
+            <a href="education.html" class="nav-item">Education & Qualifications</a>
+            <div class="nav-group">
+                <a href="employment.html" class="nav-item parent-link active-page">Professional Experience ↓</a>
+                <div class="sub-menu" style="display: block;">
+                    <a href="projects.html" class="sub-item" style="color: var(--primary); font-weight: bold;">Research</a>
+                    <a href="teaching.html" class="sub-item">Teaching</a>
+                    <a href="supervision.html" class="sub-item">Supervision</a>
+                    <a href="service.html" class="sub-item">Service & Leadership</a>
+                </div>
+            </div>
+            <a href="fundings.html" class="nav-item">Funding & Awards</a>
+            <a href="publications.html" class="nav-item">Publications & Impact</a>
             <a href="outreach.html" class="nav-item">Outreach</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
     </div>
+
+    <div class="sidebar-footer">
+        <div class="scholar-stats-sidebar">
+            <a href="https://profiles.uts.edu.au/KumarBiswajit.Debnath" target="_blank" title="UTS Profile"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://orcid.org/0000-0001-5613-2916" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+            <a href="https://scholar.google.co.uk/citations?user=fr35XxAAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            <a href="https://www.linkedin.com/in/kumar-biswajit-debnath-a300a452/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </div>
 </header>
 
 <main>
-    <div class="project-header">
+    <div class="hero-section">
+        <span class="project-meta">Flagship Research Project</span>
         <h1>BioCOOL</h1>
-        <p class="tagline">Data-driven Bio-fabricated building skins for passive cooling.</p>
+        <p style="font-size: 1.2rem; color: #555; max-width: 800px;">
+            Developing data-driven, bio-fabricated, and carbon-negative building skins designed for zero-energy passive cooling in warming climates.
+        </p>
+    </div>
+
+    <div class="diagram-box">
+        <div class="diagram-label">From Agri-Waste to Building Skin</div>
+        
+        <p style="font-size: 0.9rem; color: #888; margin-top: 20px;">
+            BioCOOL utilizes the inherent hygroscopic properties of mycelium-based composites to facilitate <strong>passive cooling</strong>. 
+            By converting agricultural waste into variably porous geometries, we create a "living skin" that regulates indoor temperatures without mechanical energy.
+        </p>
     </div>
 
     <section>
-        <p>As our planet warms, the demand for air conditioning is skyrocketing, leading to higher energy bills and increased carbon emissions. <strong>BioCOOL</strong> reimagines the "skin" of our buildings as a living, breathing shield that cools our indoor spaces naturally.</p>
+        <h2>Project Overview</h2>
+        <p>The BioCOOL project addresses the urgent need for sustainable cooling solutions in Australia. By merging <strong>Bio-fabrication</strong> with <strong>Building Physics</strong>, this research develops weather-resistant mycelium composites (MC) that act as a vernacular "Bio-jaali"—reimagining traditional passive design through modern biotechnology.</p>
         
-        <div class="diagram-container">
-            <div class="diagram-placeholder">
-                <i class="fa-solid fa-microscope" style="font-size: 3rem; margin-bottom: 10px;"></i><br>
-                [CONCEPT DIAGRAM: From Agri-Waste to Cooling Facade]
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-recycle"></i>
+                <h3>Carbon-Negative</h3>
+                <p>Repurposing agricultural by-products into structural materials that sequester carbon throughout their lifecycle.</p>
             </div>
-            <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">
-                Visualizing the cycle: Agricultural Waste &rarr; Mycelium Growth &rarr; Bio-fabricated Panels &rarr; Evaporative Cooling Effects.
-            </p>
+            <div class="feature-card">
+                <i class="fa-solid fa-snowflake"></i>
+                <h3>Passive Cooling</h3>
+                <p>Designing biomimetic porous structures that enable evaporative cooling and natural ventilation.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-temperature-arrow-down"></i>
+                <h3>Climate Resilience</h3>
+                <p>Evaluated against future climate scenarios to ensure performance during extreme heatwaves and blackouts.</p>
+            </div>
         </div>
-        
     </section>
 
-    <div class="grid">
-        <div class="card">
-            <i class="fa-solid fa-leaf"></i>
-            <h3>Nature-Grown</h3>
-            <p>We use mycelium—the root structure of fungi—to turn agricultural waste into high-performance building components. These materials are carbon-negative, meaning they store more carbon than they emit during production.</p>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-wind"></i>
-            <h3>Zero-Energy Cooling</h3>
-            <p>Inspired by vernacular "jaali" screens, BioCOOL uses porous geometries that facilitate natural airflow and moisture-driven cooling, reducing the reliance on mechanical air conditioning.</p>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-cloud-sun"></i>
-            <h3>Climate Resilience</h3>
-            <p>Our research focuses on extreme heat resilience, ensuring that future homes remain comfortable even during prolonged heatwaves in warming climates like Australia.</p>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Data-Driven Design</h3>
-            <p>By monitoring real-world occupant behavior and using advanced simulations, we tailor the building skin to respond to specific environmental conditions.</p>
-        </div>
-    </div>
-
-    <div class="impact-box">
-        <h2>The Impact</h2>
-        <p>BioCOOL is more than just a material; it is a shift toward <strong>Bio-Building Physics</strong>. By integrating biology with architectural technology, we aim to lower the carbon footprint of the construction industry while providing equitable, low-cost cooling solutions for everyone.</p>
+    <div class="vision-statement">
+        <h2>The Vision</h2>
+        <p>BioCOOL aims to revolutionize the building fabric industry by providing a low-embodied carbon alternative to energy-intensive cooling systems. Our goal is to create resilient, equitable, and bio-intelligent habitats that harmonize with nature while protecting occupants from the challenges of a warming planet.</p>
     </div>
 
     <footer>
-        <p>&copy; 2026 Kumar Biswajit Debnath | University of Technology Sydney</p>
+        <p>&copy; 2026 Kumar Biswajit Debnath. All rights reserved.</p>
     </footer>
 </main>
+
+<script>
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('collapsed');
+    }
+</script>
 
 </body>
 </html>
