@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioCOOL Project | Kumar Biswajit Debnath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary: #005a9c; 
+            --accent: #27ae60;
+            --text: #333; 
+            --bg: #ffffff; 
+        }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; line-height: 1.6; color: var(--text); min-height: 100vh; }
 
+        /* --- SIDEBAR (Standardized) --- */
+        #sidebar { flex: 0 0 280px; background: #f8f9fa; padding: 40px 20px; border-right: 1px solid #eee; position: sticky; top: 0; height: 100vh; transition: all 0.3s ease; box-sizing: border-box; display: flex; flex-direction: column; }
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .nav-links { display: flex; flex-direction: column; gap: 2px; margin-top: 20px; }
+        .nav-item { text-decoration: none; color: #444; font-weight: 500; padding: 10px 12px; border-radius: 6px; transition: 0.2s; display: block; }
+        .nav-item:hover { background: #eef2f6; color: var(--primary); }
+        .active-page { background: #eef2f6 !important; color: var(--primary) !important; font-weight: bold !important; }
+
+        /* --- MAIN CONTENT --- */
+        main { flex: 1; padding: 60px; background: var(--bg); max-width: 900px; }
+        .project-header { margin-bottom: 40px; border-left: 5px solid var(--accent); padding-left: 25px; }
+        .project-header h1 { font-size: 2.8rem; color: var(--primary); margin: 0; }
+        .tagline { font-size: 1.2rem; color: #666; font-style: italic; }
+
+        /* Concept Diagram Placeholder */
+        .diagram-container { 
+            background: #f9f9f9; 
+            border: 1px dashed #ccc; 
+            border-radius: 12px; 
+            padding: 40px; 
+            text-align: center; 
+            margin: 40px 0;
+        }
+        .diagram-placeholder { font-weight: bold; color: var(--primary); }
+
+        /* Feature Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .card { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); border-top: 3px solid var(--accent); }
+        .card i { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
+        .card h3 { margin-top: 0; color: var(--primary); }
+
+        .impact-box { background: var(--primary); color: white; padding: 30px; border-radius: 12px; margin-top: 50px; }
+        .impact-box h2 { margin-top: 0; color: #fff; }
+
+        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; color: #888; text-align: center; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            #sidebar { width: 100%; height: auto; position: relative; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="sidebar">
+    <div class="sidebar-top">
+        <img src="Portrait.jpg" class="profile-pic" alt="Kumar Biswajit Debnath">
+        <h2 style="font-size: 1.2rem; margin: 0; color: var(--primary);">K. B. Debnath</h2>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="projects.html" class="nav-item active-page">Research Projects</a>
+            <a href="publications.html" class="nav-item">Publications</a>
+            <a href="outreach.html" class="nav-item">Outreach</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="project-header">
+        <h1>BioCOOL</h1>
+        <p class="tagline">Data-driven Bio-fabricated building skins for passive cooling.</p>
+    </div>
+
+    <section>
+        <p>As our planet warms, the demand for air conditioning is skyrocketing, leading to higher energy bills and increased carbon emissions. <strong>BioCOOL</strong> reimagines the "skin" of our buildings as a living, breathing shield that cools our indoor spaces naturally.</p>
+        
+        <div class="diagram-container">
+            <div class="diagram-placeholder">
+                <i class="fa-solid fa-microscope" style="font-size: 3rem; margin-bottom: 10px;"></i><br>
+                [CONCEPT DIAGRAM: From Agri-Waste to Cooling Facade]
+            </div>
+            <p style="font-size: 0.9rem; color: #777; margin-top: 20px;">
+                Visualizing the cycle: Agricultural Waste &rarr; Mycelium Growth &rarr; Bio-fabricated Panels &rarr; Evaporative Cooling Effects.
+            </p>
+        </div>
+        
+    </section>
+
+    <div class="grid">
+        <div class="card">
+            <i class="fa-solid fa-leaf"></i>
+            <h3>Nature-Grown</h3>
+            <p>We use mycelium—the root structure of fungi—to turn agricultural waste into high-performance building components. These materials are carbon-negative, meaning they store more carbon than they emit during production.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-wind"></i>
+            <h3>Zero-Energy Cooling</h3>
+            <p>Inspired by vernacular "jaali" screens, BioCOOL uses porous geometries that facilitate natural airflow and moisture-driven cooling, reducing the reliance on mechanical air conditioning.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <h3>Climate Resilience</h3>
+            <p>Our research focuses on extreme heat resilience, ensuring that future homes remain comfortable even during prolonged heatwaves in warming climates like Australia.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Data-Driven Design</h3>
+            <p>By monitoring real-world occupant behavior and using advanced simulations, we tailor the building skin to respond to specific environmental conditions.</p>
+        </div>
+    </div>
+
+    <div class="impact-box">
+        <h2>The Impact</h2>
+        <p>BioCOOL is more than just a material; it is a shift toward <strong>Bio-Building Physics</strong>. By integrating biology with architectural technology, we aim to lower the carbon footprint of the construction industry while providing equitable, low-cost cooling solutions for everyone.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kumar Biswajit Debnath | University of Technology Sydney</p>
+    </footer>
+</main>
+
+</body>
+</html>
